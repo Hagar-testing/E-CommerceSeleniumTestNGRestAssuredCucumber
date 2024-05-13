@@ -1,6 +1,7 @@
 package com.demoblaze.pages;
 
 import com.demoblaze.utils.ConfigUtils;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage {
@@ -9,6 +10,7 @@ public class HomePage {
         this.driver = driver;
     }
 
+    @Step("Open Home Page")
     public void load(){
         driver.get(ConfigUtils.getBaseUrl());
     }

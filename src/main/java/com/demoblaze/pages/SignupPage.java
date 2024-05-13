@@ -2,6 +2,7 @@ package com.demoblaze.pages;
 
 import com.demoblaze.utils.BrowserActions;
 import com.demoblaze.utils.ElementActions;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -21,6 +22,7 @@ public class SignupPage {
         this.elementActions = new ElementActions(driver);
     }
 
+    @Step("User Signup with Correct UserName: {userName} and Password: {password}")
     public SignupPage signupUser(String userName, String password) {
         elementActions
                 .type(username_input,userName)
@@ -29,7 +31,7 @@ public class SignupPage {
         return this;
 
     }
-
+    @Step("Get register alert message")
     public String getSuccessMessage(){
         return getAlertMessage(driver);
     }
