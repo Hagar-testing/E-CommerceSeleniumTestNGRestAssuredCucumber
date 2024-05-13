@@ -23,7 +23,7 @@ public class ConfigUtils {
 
     public static String getEnv(){
         String envFromSys = System.getProperty(ENV);
-        return envFromSys != null ? envFromSys : STAGING;
+        return envFromSys != null ? envFromSys : PRODUCTION;
     }
 
     public static String getBaseUrl(){
