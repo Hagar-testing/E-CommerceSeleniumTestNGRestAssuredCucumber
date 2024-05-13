@@ -16,8 +16,8 @@ public class WaitUtils {
         return new WebDriverWait(driver, DEFAULT_WAIT_DURATION);
     }
 
-    public void waitForElementToBeClickable(WebDriver driver, By locator) {
-        getWebDriverWait(driver).until(ExpectedConditions.elementToBeClickable(locator));
+    public static WebElement waitForElementToBeClickable(WebDriver driver, By locator) {
+        return getWebDriverWait(driver).until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     public static WebElement waitForVisibilityOfElement(WebDriver driver, By locator) {
@@ -34,5 +34,9 @@ public class WaitUtils {
 
     public static void waitForTextToBePresentInElement(WebDriver driver, By locator, String text) {
         getWebDriverWait(driver).until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
+    }
+
+    public static void waitForAlertToPresent(WebDriver driver){
+        getWebDriverWait(driver).until(ExpectedConditions.alertIsPresent());
     }
 }
