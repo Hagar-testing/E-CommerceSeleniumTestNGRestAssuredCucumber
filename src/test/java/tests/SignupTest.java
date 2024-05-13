@@ -2,7 +2,7 @@ package tests;
 
 import com.demoblaze.factory.DriverFactory;
 import com.demoblaze.pages.HomePage;
-import com.demoblaze.pages.NavigationBar;
+import com.demoblaze.pages.Header;
 import com.demoblaze.pages.SignupPage;
 import data.DataProviders;
 import io.qameta.allure.Description;
@@ -22,7 +22,7 @@ public class SignupTest {
     public HomePage homePage;
     public SignupPage signupPage;
 
-    public NavigationBar navigationBar;
+    public Header header;
 
     protected final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private final String timeStamp = String.valueOf(System.currentTimeMillis());
@@ -32,7 +32,7 @@ public class SignupTest {
         driver.set(new DriverFactory().initializeDriver());
         new HomePage(driver.get())
                 .load();
-        new NavigationBar(driver.get())
+        new Header(driver.get())
                 .clickOnRegisterButton();
     }
 
