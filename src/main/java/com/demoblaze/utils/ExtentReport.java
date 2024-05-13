@@ -19,7 +19,7 @@ public class ExtentReport {
         report.attachReporter(spark);
         spark.config().setTheme(Theme.STANDARD);
         spark.config().setDocumentTitle("Extent Report");
-        spark.config().setReportName("E-commerce Extent Report");
+        spark.config().setReportName("Demoblaze Report");
     }
 
     public static void createTest(String testCaseName) {

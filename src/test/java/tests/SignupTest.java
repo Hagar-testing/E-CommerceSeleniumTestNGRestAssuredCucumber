@@ -4,11 +4,15 @@ import com.demoblaze.factory.DriverFactory;
 import com.demoblaze.pages.HomePage;
 import com.demoblaze.pages.NavigationBar;
 import com.demoblaze.pages.SignupPage;
+import data.DataProviders;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.HashMap;
+
+import static data.DataFilesPathConstants.REGISTER_USER_DATA;
 
 public class SignupTest {
 
@@ -18,6 +22,7 @@ public class SignupTest {
     public NavigationBar navigationBar;
 
     protected final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private final String timeStamp = String.valueOf(System.currentTimeMillis());
 
     @BeforeMethod
     public void beforeMethod() {
@@ -28,12 +33,12 @@ public class SignupTest {
                 .clickOnRegisterButton();
     }
 
-    @Test
-    public void registerUser() {
+    @Test(dataProvider = REGISTER_USER_DATA, dataProviderClass = DataProviders.class)
+    public void registerUser(HashMap<String, String> data) {
         String message = new SignupPage(driver.get())
-                .signupUser("88kk8uuuu8","2uuuuuuuujjjj233k44")
+                .signupUser(data.get("username") + timeStamp,data.get("password"))
                 .getSuccessMessage();
-        Assert.assertEquals(message,"Sign up successful.");
+        Assert.assertEquals(message,data.get("success_message"));
 
     }
 

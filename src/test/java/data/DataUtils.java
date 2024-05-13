@@ -1,4 +1,4 @@
-package com.demoblaze.utils;
+package data;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,8 +10,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.demoblaze.constants.DataFilesPathConstants.DATA_FILE_PATH;
-import static com.demoblaze.constants.DataFilesPathConstants.projectPath;
+import static data.DataFilesPathConstants.DATA_FILE_PATH;
+import static data.DataFilesPathConstants.projectPath;
 
 
 
