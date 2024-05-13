@@ -12,8 +12,9 @@ public class JavascriptExecutorUtils {
         return (JavascriptExecutor) driver;
     }
 
-    public static void executeJavaScriptClick(WebDriver driver,WebElement element) {
-        getJavascriptExecutor(driver).executeScript("arguments[0].click();", element);
+    public static void executeJavaScriptClick(WebDriver driver,By elementLocator) {
+        getJavascriptExecutor(driver).executeScript("arguments[arguments.length - 1].click();",
+                driver.findElement(elementLocator));
     }
 
     public static void sendInput(WebDriver driver, By elementLocator, String text){

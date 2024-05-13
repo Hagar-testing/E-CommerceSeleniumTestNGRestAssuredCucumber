@@ -4,6 +4,8 @@ import com.demoblaze.enums.SelectType;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 
+import static com.demoblaze.utils.JavascriptExecutorUtils.*;
+import static com.demoblaze.utils.WaitUtils.waitForElementToBeClickable;
 
 
 public class ElementActions {
@@ -22,7 +24,6 @@ public class ElementActions {
             // Attempt to find the element directly
             return driver.findElement(targetElementLocator);
         } catch (Exception e) {
-            System.out.println("RRRRRRRRRRetry " + targetElementLocator);
             // Retry finding the element with an explicit wait and scroll
             return waitForElementToBePresent(targetElementLocator);
         }
@@ -32,7 +33,7 @@ public class ElementActions {
         try {
             WebElement element = WaitUtils.waitForVisibilityOfElement(driver,targetElementLocator);
             if (!element.isDisplayed()) {
-                JavascriptExecutorUtils.findElement(driver, targetElementLocator); // Scroll if needed
+                findElement(driver, targetElementLocator); // Scroll if needed
             }
             return element;
         } catch (TimeoutException toe) {
@@ -50,24 +51,26 @@ public class ElementActions {
         try {
             // Clear before typing condition
             if (!element.getAttribute("value").isBlank() && clearBeforeTyping) {
-                logElementActionStep(driver, "Clear and Type [" + text + "] on", elementLocator);
                 element.clear();
                 // We type here! :D
                 element.sendKeys(text);
+                logElementActionStep(driver, "Clear and Type [" + text + "] on", elementLocator);
+
                 // Type using JavascriptExecutor in case of the data is not typed successfully
                 // using the Selenium sendKeys method
                 if (!element.getAttribute("value").equals(text)) {
-                    JavascriptExecutorUtils.sendInput(driver, elementLocator, text);
+                    sendInput(driver, elementLocator, text);
                 }
             } else {
-                logElementActionStep(driver, "Type [" + text + "] on", elementLocator);
                 // We type here! :D
                 element.sendKeys(text);
+                logElementActionStep(driver, "Type [" + text + "] on", elementLocator);
+
                 // Type using JavascriptExecutor in case of the data is not typed successfully
                 // using the Selenium sendKeys method
                 if (!element.getAttribute("value").contains(text)) {
                     String currentValue = element.getAttribute("value");
-                    JavascriptExecutorUtils.sendInput(driver, elementLocator, currentValue + text);
+                    sendInput(driver, elementLocator, currentValue + text);
                 }
             }
         } catch (Exception e) {
@@ -89,7 +92,7 @@ public class ElementActions {
 
     public ElementActions clickUsingJavascript(By locator) {
         logElementActionStep(driver,"click using javascript",locator);
-        JavascriptExecutorUtils.executeJavaScriptClick(driver,locateElement(locator));
+        executeJavaScriptClick(driver,locator);
 
         return this;
     }
