@@ -40,11 +40,9 @@ public class SignupTest {
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully")
     @Test(dataProvider = REGISTER_USER_DATA, dataProviderClass = DataProviders.class)
     public void registerUser(HashMap<String, String> data) {
-        boolean isCorrectMsg = new SignupPage(driver.get())
+        new SignupPage(driver.get())
                 .signupUser(data.get("username") + timeStamp,data.get("password"))
                 .verifyExpectedSuccessMessage(data.get("success_message"));
-        assertTrue(isCorrectMsg);
-
     }
 
 

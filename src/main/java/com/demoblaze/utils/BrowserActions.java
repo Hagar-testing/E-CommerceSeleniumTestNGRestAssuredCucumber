@@ -20,4 +20,8 @@ public class BrowserActions {
         Alert alert = driver.switchTo().alert();
         alert.dismiss();
     }
+
+    public static void navigateBack(WebDriver driver){
+        driver.navigate().back();
+    }
 }

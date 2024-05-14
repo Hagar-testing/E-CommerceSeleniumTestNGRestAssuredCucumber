@@ -4,8 +4,10 @@ import com.demoblaze.utils.ElementActions;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import static com.demoblaze.utils.BrowserActions.getAlertMessage;
+import static org.testng.AssertJUnit.assertEquals;
 
 public class SignupPage {
     private final WebDriver driver;
@@ -28,9 +30,13 @@ public class SignupPage {
         return this;
 
     }
+
+    //region Validation
     @Step("Validate is {message} shown successfully!")
-    public boolean verifyExpectedSuccessMessage(String message){
-        return getAlertMessage(driver).equals(message);
+    public SignupPage verifyExpectedSuccessMessage(String message){
+        assertEquals(getAlertMessage(driver),message);
+        return this ;
     }
+    //endregion
 
 }

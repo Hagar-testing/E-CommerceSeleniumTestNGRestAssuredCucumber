@@ -6,13 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
-    private final WebDriver driver;
     private final ElementActions elementActions;
     final By username_input = By.cssSelector("input[id='loginusername']");
     final By password_input = By.id("loginpassword");
     final By login_button = By.cssSelector("button[onclick='logIn()']");
     public LoginPage(WebDriver driver){
-        this.driver = driver;
         this.elementActions = new ElementActions(driver);
     }
 

@@ -3,6 +3,7 @@ package tests;
 import com.demoblaze.factory.DriverFactory;
 import com.demoblaze.pages.*;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -29,7 +30,7 @@ public class CheckoutTest {
                 .clickOnLoginButton();
 
         new LoginPage(driver.get())
-                .loginUser("Hagar","Hagar");
+                .loginUser("Hagar", "Hagar");
 
         new Header(driver.get())
                 .validateOnAccountIsOpenedSuccessfully();
@@ -40,10 +41,9 @@ public class CheckoutTest {
         new ProductDetailsPage(driver.get())
                 .clickOnAddToCartButton()
                 .validateOnSuccessMessageOfAddProductToCart("Product added.")
-                .hideAlertDialog();
-
-        driver.get().navigate().back();
-        driver.get().navigate().back();
+                .hideAlertDialog()
+                .navigateBack()
+                .navigateBack();
 
         new HomePage(driver.get())
                 .selectProduct(2);
@@ -58,11 +58,28 @@ public class CheckoutTest {
 
         new CartPage(driver.get())
                 .validateOnItemAddedInCart("Sony vaio i5")
-                .validateOnProductPrices("Sony vaio i5","790")
+                .validateOnProductPrices("Sony vaio i5", "790")
                 .validateOnItemAddedInCart("Sony vaio i7")
-                .validateOnProductPrices("Sony vaio i7","790");
+                .validateOnProductPrices("Sony vaio i7", "790")
+                .validateOnTotalProductPrice("1580")
+                .clickOnPlaceOrderButton();
+
+        new PlaceOrderPage(driver.get())
+                .validateOnTotalPriceInPlaceOrder("1580")
+                .fillOrderInformationAndPurchace(
+                        "Hagar",
+                        "Egypt",
+                        "Cairo",
+                        "Month",
+                        "123456799100",
+                        "2024")
+                .validateOnSuccessMessageOfPurchaseOrder("Thank you for your purchase!");
+
     }
 
-
+    @AfterMethod
+    public void afterMethod(){
+        driver.get().quit();
+    }
 
 }

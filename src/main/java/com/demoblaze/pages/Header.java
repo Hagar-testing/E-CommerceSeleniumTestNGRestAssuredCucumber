@@ -10,23 +10,23 @@ import static org.testng.AssertJUnit.assertTrue;
 public class Header {
 
     ElementActions elementActions;
-    final By signup_button = By.cssSelector("a[id*='signin']");
-    final By login_button = By.cssSelector("a[id*='login']");
+    final By signup_a = By.cssSelector("a[id*='signin']");
+    final By login_a = By.cssSelector("a[id*='login']");
     final By welcome_button = By.id("nameofuser");
     final By home_button = By.cssSelector(".nav-link[href='index.html']");
-    final By cart_button = By.cssSelector("a[id*='cart']");
+    final By cart_a = By.cssSelector("a[id*='cart']");
 
     public Header(WebDriver driver){
         elementActions = new ElementActions(driver);
     }
     @Step("Click on signup button")
     public void clickOnRegisterButton(){
-        elementActions.click(signup_button);
+        elementActions.click(signup_a);
     }
 
     @Step("Click on login button")
     public void clickOnLoginButton(){
-        elementActions.click(login_button);
+        elementActions.click(login_a);
     }
 
     @Step("Click on home button")
@@ -36,7 +36,7 @@ public class Header {
 
     @Step("Click on cart button")
     public void clickOnCartButton(){
-        elementActions.click(cart_button);
+        elementActions.click(cart_a);
     }
 
     //region Validations
