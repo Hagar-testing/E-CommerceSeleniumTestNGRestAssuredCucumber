@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static com.demoblaze.utils.actions.BrowserActions.getAlertMessage;
-import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 public class SignupPage {
     private final WebDriver driver;
@@ -32,7 +32,7 @@ public class SignupPage {
 
     //region Validation
     @Step("Validate is {message} shown successfully!")
-    public SignupPage verifyExpectedSuccessMessage(String message){
+    public SignupPage validateObRegisterSuccessMessage(String message){
         assertEquals(getAlertMessage(driver),message);
         return this ;
     }
