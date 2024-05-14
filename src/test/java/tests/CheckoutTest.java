@@ -37,24 +37,30 @@ public class CheckoutTest {
         new HomePage(driver.get())
                 .selectCategory("Laptops")
                 .selectProduct(1);
-        new ProductPage(driver.get())
+        new ProductDetailsPage(driver.get())
                 .clickOnAddToCartButton()
                 .validateOnSuccessMessageOfAddProductToCart("Product added.")
                 .hideAlertDialog();
 
-        new Header(driver.get())
-                .clickOnHomeButton();
+        driver.get().navigate().back();
+        driver.get().navigate().back();
 
         new HomePage(driver.get())
-                .selectCategory("Laptops")
                 .selectProduct(2);
-        new ProductPage(driver.get())
+
+        new ProductDetailsPage(driver.get())
                 .clickOnAddToCartButton()
                 .validateOnSuccessMessageOfAddProductToCart("Product added.")
                 .hideAlertDialog();
 
         new Header(driver.get())
                 .clickOnCartButton();
+
+        new CartPage(driver.get())
+                .validateOnItemAddedInCart("Sony vaio i5")
+                .validateOnProductPrices("Sony vaio i5","790")
+                .validateOnItemAddedInCart("Sony vaio i7")
+                .validateOnProductPrices("Sony vaio i7","790");
     }
 
 
