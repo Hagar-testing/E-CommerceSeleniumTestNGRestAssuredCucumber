@@ -5,8 +5,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 
 import static com.demoblaze.utils.JavascriptExecutorUtils.*;
-import static com.demoblaze.utils.WaitUtils.waitForElementToBeClickable;
-
 
 public class ElementActions {
 
@@ -20,13 +18,7 @@ public class ElementActions {
     }
 
     public WebElement locateElement(By targetElementLocator) {
-        try {
-            // Attempt to find the element directly
-            return driver.findElement(targetElementLocator);
-        } catch (Exception e) {
-            // Retry finding the element with an explicit wait and scroll
-            return waitForElementToBePresent(targetElementLocator);
-        }
+         return waitForElementToBePresent(targetElementLocator);
     }
 
     private WebElement waitForElementToBePresent(By targetElementLocator) {
@@ -85,8 +77,8 @@ public class ElementActions {
     }
 
     public ElementActions click(By locator) {
-        logElementActionStep(driver,"Click on", locator);
         locateElement(locator).click();
+        logElementActionStep(driver,"Click on", locator);
         return this;
     }
 
@@ -113,11 +105,15 @@ public class ElementActions {
         return this;
     }
 
-    private static void logElementActionStep(WebDriver driver, String action, By elementLocator) {
-        String elementName = driver.findElement(elementLocator).getAccessibleName();
-        if ((elementName != null && !elementName.isEmpty())) {
-            Logger.logStep("[Element Action] " + action + " [" + elementName + "] element");
-        } else {
+    private  void logElementActionStep(WebDriver driver, String action, By elementLocator) {
+        try {
+            String elementName = driver.findElement(elementLocator).getAccessibleName();
+            if ((elementName != null && !elementName.isEmpty())) {
+                Logger.logStep("[Element Action] " + action + " [" + elementName + "] element");
+            } else {
+                Logger.logStep("[Element Action] " + action + " [" + elementLocator + "] element");
+            }
+        } catch (Exception e){
             Logger.logStep("[Element Action] " + action + " [" + elementLocator + "] element");
         }
 

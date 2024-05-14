@@ -2,6 +2,7 @@ package com.demoblaze.utils;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
 import static com.demoblaze.utils.WaitUtils.waitForAlertToPresent;
@@ -12,5 +13,11 @@ public class BrowserActions {
         waitForAlertToPresent(driver);
         Alert alert = driver.switchTo().alert();
         return alert.getText();
+    }
+
+    public static void dismissAlertDialog(WebDriver driver){
+        waitForAlertToPresent(driver);
+        Alert alert = driver.switchTo().alert();
+        alert.dismiss();
     }
 }

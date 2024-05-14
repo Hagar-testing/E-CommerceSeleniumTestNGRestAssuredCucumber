@@ -8,8 +8,6 @@ import org.openqa.selenium.WebDriver;
 import static com.demoblaze.utils.BrowserActions.getAlertMessage;
 
 public class SignupPage {
-
-
     private final WebDriver driver;
     private final ElementActions elementActions;
     final By username_input = By.id("sign-username");

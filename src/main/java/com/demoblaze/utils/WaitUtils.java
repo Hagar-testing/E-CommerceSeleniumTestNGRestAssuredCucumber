@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class WaitUtils {
-    private static final Duration DEFAULT_WAIT_DURATION = Duration.ofSeconds(10);
+    private static final Duration DEFAULT_WAIT_DURATION = Duration.ofSeconds(20);
 
 
     private static WebDriverWait getWebDriverWait(WebDriver driver) {
