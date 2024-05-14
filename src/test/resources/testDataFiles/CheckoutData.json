@@ -1,0 +1,34 @@
+{
+    "user": {
+      "name": "Hagar",
+      "password": "123_Password"
+    },
+    "category": {
+        "name": "Laptops",
+        "products": {
+            "first_product": {
+                "title": "Sony vaio i5",
+                "price": "790"
+            },
+            "second_product": {
+              "title": "Sony vaio i7",
+              "price": "790"
+            }
+        }
+    },
+    "cart": {
+        "total_price": "1580"
+    },
+    "messages": {
+        "add_product_to_cart": "Product added.",
+        "place_order": "Thank you for your purchase!"
+    },
+    "place_order_data": {
+        "name": "Hagar_Bot",
+        "country": "Egypt",
+        "city": "Cairo",
+        "month": "March",
+        "card": "123456799100",
+        "year": "2024"
+    }
+}
