@@ -10,12 +10,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.util.Objects;
-
 import static com.demoblaze.utils.JsonUtils.getTestData;
 import static data.DataFilesPathConstants.CHECKOUT_DATA_FILE_PATH;
-import static data.DataFilesPathConstants.REGISTER_DATA_FILE_PATH;
 
 
 public class CheckoutTest {
@@ -34,7 +31,7 @@ public class CheckoutTest {
     }
 
     @Test
-    public void verifyTwoProductsArePurchasedSuccessfully() throws InterruptedException {
+    public void verifyTwoProductsArePurchasedSuccessfully()  {
 
         new AuthenticationApis()
                 .registerUser(getTestData(data, "user.name")+ timeStamp,
@@ -53,7 +50,7 @@ public class CheckoutTest {
 
         new HomePage(driver)
                 .selectCategory(getTestData(data, "category.name"))
-                .selectProduct(1);
+                .selectProduct(1,getTestData(data, "category.products.first_product.title"));
         new ProductDetailsPage(driver)
                 .clickOnAddToCartButton()
                 .validateOnSuccessMessageOfAddProductToCart(getTestData(data, "messages.add_product_to_cart"))
@@ -62,7 +59,7 @@ public class CheckoutTest {
                 .navigateBack();
 
         new HomePage(driver)
-                .selectProduct(2);
+                .selectProduct(2,getTestData(data, "category.products.second_product.title"));
 
         new ProductDetailsPage(driver)
                 .clickOnAddToCartButton()
@@ -92,7 +89,7 @@ public class CheckoutTest {
                 .validateOnSuccessMessageOfPurchaseOrder(getTestData(data, "messages.place_order"));
 
 
-      
+       
     }
 
     @AfterMethod

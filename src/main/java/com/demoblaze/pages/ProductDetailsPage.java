@@ -20,7 +20,7 @@ public class ProductDetailsPage {
     }
 
     @Step("Click on add to cart button")
-    public ProductDetailsPage clickOnAddToCartButton() throws InterruptedException {
+    public ProductDetailsPage clickOnAddToCartButton()  {
         elementActions.click(addToCart_a);
         return this;
     }

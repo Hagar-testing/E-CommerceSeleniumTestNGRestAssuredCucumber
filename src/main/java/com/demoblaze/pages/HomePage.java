@@ -1,6 +1,7 @@
 package com.demoblaze.pages;
 
 import com.demoblaze.utils.ConfigUtils;
+import com.demoblaze.utils.WaitUtils;
 import com.demoblaze.utils.actions.ElementActions;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -34,8 +35,8 @@ public class HomePage {
         return this;
     }
     @Step("Select product with index: {productIndex}")
-    public HomePage selectProduct(Integer productIndex) throws InterruptedException {
-        Thread.sleep(1000);
+    public HomePage selectProduct(Integer productIndex, String title)  {
+        WaitUtils.waitForTextToBePresentInElement(driver,getProductTitle(productIndex),title);
         elementActions
                 .click(getProductTitle(productIndex));
         return this;
