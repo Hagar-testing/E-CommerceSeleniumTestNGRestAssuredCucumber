@@ -30,6 +30,9 @@ public class ConfigUtils {
         String urlFromSys = System.getProperty(BASE_URL);
         return urlFromSys != null ? urlFromSys : properties.getProperty(BASE_URL);
     }
-
+    public static String getAPIBaseUrl(){
+        String urlFromSys = System.getProperty(API_BASE_URL);
+        return urlFromSys != null ? urlFromSys : properties.getProperty(API_BASE_URL);
+    }
 
 }

@@ -1,12 +1,11 @@
 package com.demoblaze.pages;
 
-import com.demoblaze.utils.ElementActions;
+import com.demoblaze.utils.actions.ElementActions;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 
-import static com.demoblaze.utils.BrowserActions.getAlertMessage;
+import static com.demoblaze.utils.actions.BrowserActions.getAlertMessage;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class SignupPage {

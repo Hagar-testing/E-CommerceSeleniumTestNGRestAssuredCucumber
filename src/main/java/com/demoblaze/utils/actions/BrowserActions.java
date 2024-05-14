@@ -1,4 +1,4 @@
-package com.demoblaze.utils;
+package com.demoblaze.utils.actions;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;

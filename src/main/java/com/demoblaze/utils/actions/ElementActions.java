@@ -1,6 +1,8 @@
-package com.demoblaze.utils;
+package com.demoblaze.utils.actions;
 
 import com.demoblaze.enums.SelectType;
+import com.demoblaze.utils.Logger;
+import com.demoblaze.utils.WaitUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 

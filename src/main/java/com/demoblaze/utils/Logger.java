@@ -31,4 +31,19 @@ public class Logger {
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64), "Full Page Screenshot").build();
     }
 
+    @Attachment(value = "API Request - {type}", type = "text/json")
+    public static void attachApiRequestToAllureReport(String type, byte[] b) {
+    }
+
+    @Attachment(value = "API Response", type = "text/json")
+    public static void attachApiResponseToAllureReport(byte[] b) {
+    }
+
+    public static byte[] attachTextJson(byte[] b) {
+        try {
+            return b;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
