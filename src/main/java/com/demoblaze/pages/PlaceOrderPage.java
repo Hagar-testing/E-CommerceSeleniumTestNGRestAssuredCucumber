@@ -1,13 +1,10 @@
 package com.demoblaze.pages;
 
 import com.demoblaze.utils.ElementActions;
-import com.demoblaze.utils.StringUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 
-import static com.demoblaze.utils.BrowserActions.getAlertMessage;
 import static com.demoblaze.utils.StringUtils.getNumberFromText;
 import static org.testng.Assert.assertEquals;
 
@@ -28,13 +25,13 @@ public class PlaceOrderPage {
         this.elementActions = new ElementActions(driver);
     }
 
-    @Step("Fill user order information")
-    public PlaceOrderPage fillOrderInformationAndPurchace(String name,
-                                                String country,
-                                                String city,
-                                                String month,
-                                                String card,
-                                                String year){
+    @Step("Fill user order information and purchase")
+    public PlaceOrderPage fillOrderInformationAndPurchase(String name,
+                                                          String country,
+                                                          String city,
+                                                          String month,
+                                                          String card,
+                                                          String year){
         elementActions
                 .type(name_input,name)
                 .type(country_input,country)

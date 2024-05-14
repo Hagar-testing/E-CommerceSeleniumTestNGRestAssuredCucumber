@@ -66,7 +66,7 @@ public class CheckoutTest {
 
         new PlaceOrderPage(driver.get())
                 .validateOnTotalPriceInPlaceOrder("1580")
-                .fillOrderInformationAndPurchace(
+                .fillOrderInformationAndPurchase(
                         "Hagar",
                         "Egypt",
                         "Cairo",
