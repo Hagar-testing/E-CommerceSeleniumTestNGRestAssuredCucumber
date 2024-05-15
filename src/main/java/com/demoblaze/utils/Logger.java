@@ -16,8 +16,8 @@ public class Logger {
     private static final org.apache.log4j.Logger log = LogManager.getLogger(Logger.class);
     @Step("{message}")
     public static void logStep(String message) {
-        System.out.println("<" +   "> " + message);
-        log.info("<" +   "> " + message);
+        log.info(message);
+        System.out.println(message);
         ExtentReport.info(message);
     }
 
