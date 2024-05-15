@@ -13,7 +13,6 @@ public class Header {
     final By signup_a = By.cssSelector("a[id*='signin']");
     final By login_a = By.cssSelector("a[id*='login']");
     final By welcome_button = By.id("nameofuser");
-    final By home_button = By.cssSelector(".nav-link[href='index.html']");
     final By cart_a = By.cssSelector("a[id*='cart']");
 
     public Header(WebDriver driver){
@@ -27,11 +26,6 @@ public class Header {
     @Step("Click on login button")
     public void clickOnLoginButton(){
         elementActions.click(login_a);
-    }
-
-    @Step("Click on home button")
-    public void clickOnHomeButton(){
-        elementActions.click(home_button);
     }
 
     @Step("Click on cart button")
