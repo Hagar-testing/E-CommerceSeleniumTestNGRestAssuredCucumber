@@ -110,14 +110,6 @@
             <type>pom</type>
         </dependency>
 
-
-        <!-- JavaFaker -->
-        <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>${javafaker.version}</version>
-        </dependency>
-
         <!-- Allure TestNG -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
