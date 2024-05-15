@@ -2,9 +2,11 @@ package tests;
 
 import com.demoblaze.api.AuthenticationApis;
 import com.demoblaze.factory.DriverFactory;
+import com.demoblaze.listener.RetryAnalyzer;
 import com.demoblaze.pages.*;
 import com.demoblaze.utils.JsonUtils;
 import com.google.gson.JsonObject;
+import io.qameta.allure.Feature;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -14,8 +16,8 @@ import java.util.Objects;
 import static com.demoblaze.utils.JsonUtils.getTestData;
 import static data.DataFilesPathConstants.CHECKOUT_DATA_FILE_PATH;
 
-
-public class CheckoutTest {
+@Feature("Place Order Feature")
+public class PlaceOrderTest {
     private  WebDriver driver;
 
     private final String timeStamp = String.valueOf(System.currentTimeMillis());
@@ -89,7 +91,10 @@ public class CheckoutTest {
                 .validateOnSuccessMessageOfPurchaseOrder(getTestData(data, "messages.place_order"));
 
 
-       
+        // New instance of pages
+        // time in logger
+        // reports
+        // merge on master
     }
 
     @AfterMethod
