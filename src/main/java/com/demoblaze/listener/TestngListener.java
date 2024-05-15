@@ -11,30 +11,30 @@ public class TestngListener implements ISuiteListener, ITestListener, IInvokedMe
 
     @Override
     public void onStart(ISuite suite) {
-        System.out.println("\n" + "==============================================");
-        System.out.println("Starting Test Suite; By Hagar! =");
-        System.out.println("==============================================" + "\n");
+        System.out.println("\n" + "----------------------------------------------");
+        System.out.println("Starting Test Suite; By Hagar! ");
+        System.out.println("----------------------------------------------" + "\n");
         ExtentReport.initReports();
     }
 
     @Override
     public void onFinish(ISuite suite) {
-        System.out.println("\n" + "==============================================");
-        System.out.println("Finished Test Suite; By Hagar! =");
-        System.out.println("==============================================" + "\n");
+        System.out.println("\n" + "----------------------------------------------");
+        System.out.println("Finished Test Suite; By Hagar! ");
+        System.out.println("----------------------------------------------" + "\n");
         ExtentReport.flushReports();
     }
 
     @Override
     public void onStart(ITestContext context) {
-        System.out.println("\n" + "==================================================== " + "Test: ["
-                + context.getName() + "] Started" + " ====================================================" + "\n");
+        System.out.println("\n" + "---------------------------------------------------- " + "Test: ["
+                + context.getName() + "] Started" + " ----------------------------------------------------" + "\n");
     }
 
     @Override
     public void onFinish(ITestContext context) {
-        System.out.println("\n" + "==================================================== " + "Test: ["
-                + context.getName() + "] Finished" + " ====================================================" + "\n");
+        System.out.println("\n" + "---------------------------------------------------- " + "Test: ["
+                + context.getName() + "] Finished" + " ----------------------------------------------------" + "\n");
     }
 
 
@@ -65,9 +65,6 @@ public class TestngListener implements ISuiteListener, ITestListener, IInvokedMe
         }
     }
 
-    ////////////////////////////////////////////////////////////
-    ///////////////// IInvokedMethodListener //////////////////
-    //////////////////////////////////////////////////////////
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         ITestNGMethod testMethod = method.getTestMethod();
@@ -76,7 +73,7 @@ public class TestngListener implements ISuiteListener, ITestListener, IInvokedMe
         } else {
             ExtentReport.createTest(testResult.getName());
         }
-        System.out.println("\n" + "============================================================================================");
+        System.out.println("\n" + "--------------------------------------------------------------------------------------------");
         if (method.isConfigurationMethod()) {
             System.out.println("Starting Configuration Method (Setup or Teardown): [" + testResult.getName() + "]");
             if (testMethod.getDescription() != null && !testMethod.getDescription().equals("")) {
@@ -87,7 +84,7 @@ public class TestngListener implements ISuiteListener, ITestListener, IInvokedMe
         } else {
             System.out.println("Starting Test Case: [" + testResult.getName() + "]");
         }
-        System.out.println("============================================================================================" + "\n");
+        System.out.println("--------------------------------------------------------------------------------------------" + "\n");
     }
 
     @Override
@@ -98,13 +95,13 @@ public class TestngListener implements ISuiteListener, ITestListener, IInvokedMe
             Logger.attachScreenshotToAllureReport(driver);
         }
 
-        System.out.println("\n" + "===========================================================================================");
+        System.out.println("\n" + "-------------------------------------------------------------------------------------------");
         if (method.isConfigurationMethod()) {
             System.out.println("Finished Configuration Method (Setup or Teardown): [" + testResult.getName() + "]");
         } else {
             System.out.println("Finished Test Case: [" + testResult.getName() + "]");
         }
-        System.out.println("===========================================================================================" + "\n");
+        System.out.println("-------------------------------------------------------------------------------------------" + "\n");
     }
 
 }
