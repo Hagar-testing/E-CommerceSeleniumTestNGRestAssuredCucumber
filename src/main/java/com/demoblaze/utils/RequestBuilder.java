@@ -1,8 +1,7 @@
-package com.demoblaze.utils.actions;
+package com.demoblaze.utils;
 
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.demoblaze.enums.RequestType;
-import com.demoblaze.utils.ConfigUtils;
 import com.demoblaze.utils.ExtentReport;
 import com.demoblaze.utils.Logger;
 import io.qameta.allure.Step;
@@ -26,12 +25,12 @@ import java.util.Map;
 import static com.demoblaze.utils.ConfigUtils.getAPIBaseUrl;
 import static org.testng.Assert.fail;
 
-public class ApiActions {
+public class RequestBuilder {
     private Response response;
     private final SessionFilter sessionFilter;
     private final CookieFilter cookieFilter;
 
-    public ApiActions() {
+    public RequestBuilder() {
         sessionFilter = new SessionFilter();
         cookieFilter = new CookieFilter();
     }
