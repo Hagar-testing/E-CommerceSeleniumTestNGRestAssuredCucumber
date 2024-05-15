@@ -5,7 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static com.demoblaze.utils.actions.BrowserActions.getAlertMessage;
+import static com.demoblaze.utils.actions.AlertActions.getAlertMessage;
 import static org.testng.Assert.assertEquals;
 
 public class SignupPage {
