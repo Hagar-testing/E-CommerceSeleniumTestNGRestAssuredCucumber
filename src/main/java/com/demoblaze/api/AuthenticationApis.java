@@ -1,7 +1,7 @@
 package com.demoblaze.api;
 
 import com.demoblaze.enums.RequestType;
-import com.demoblaze.utils.actions.ApiActions;
+import com.demoblaze.utils.RequestBuilder;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -11,12 +11,12 @@ import java.util.Map;
 import static com.demoblaze.enums.APIResponseStatus.SUCCESS;
 
 public class AuthenticationApis {
-    private final ApiActions apiActions;
+    private final RequestBuilder requestBuilder;
 
     private final String signup_serviceName = "signup";
 
     public AuthenticationApis() {
-        this.apiActions = new ApiActions();
+        this.requestBuilder = new RequestBuilder();
     }
 
     @Step("Register user")
@@ -30,7 +30,7 @@ public class AuthenticationApis {
         Map<String, Object> createPostHeaders = new HashMap<>();
         createPostHeaders.put("charset", "UTF-8");
 
-        return apiActions.performRequest(
+        return requestBuilder.performRequest(
                 RequestType.POST,
                 signup_serviceName,
                 SUCCESS.getCode(),
