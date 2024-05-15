@@ -1,8 +1,7 @@
-package tests;
+package com.demoblaze.tests;
 
-import com.demoblaze.api.AuthenticationApis;
+import com.demoblaze.api.ApisAuthentications;
 import com.demoblaze.factory.DriverFactory;
-import com.demoblaze.listener.RetryAnalyzer;
 import com.demoblaze.pages.*;
 import com.demoblaze.utils.JsonUtils;
 import com.google.gson.JsonObject;
@@ -14,7 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.Objects;
 import static com.demoblaze.utils.JsonUtils.getTestData;
-import static data.DataFilesPathConstants.CHECKOUT_DATA_FILE_PATH;
+import static com.demoblaze.data.DataFilesPathConstants.CHECKOUT_DATA_FILE_PATH;
 
 @Feature("Place Order Feature")
 public class PlaceOrderTest {
@@ -35,7 +34,7 @@ public class PlaceOrderTest {
     @Test
     public void verifyTwoProductsArePurchasedSuccessfully()  {
 
-        new AuthenticationApis()
+        new ApisAuthentications()
                 .registerUser(getTestData(data, "user.name")+ timeStamp,
                         Objects.requireNonNull(getTestData(data, "user.password")));
 
@@ -91,10 +90,6 @@ public class PlaceOrderTest {
                 .validateOnSuccessMessageOfPurchaseOrder(getTestData(data, "messages.place_order"));
 
 
-        // New instance of pages
-        // time in logger
-        // reports
-        // merge on master
     }
 
     @AfterMethod

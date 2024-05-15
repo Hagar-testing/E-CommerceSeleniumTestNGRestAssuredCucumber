@@ -1,4 +1,4 @@
-package data;
+package com.demoblaze.data;
 
 public class DataFilesPathConstants {
     public static final String DATA_FILE_PATH = "src//test//resources//testDataFiles//";

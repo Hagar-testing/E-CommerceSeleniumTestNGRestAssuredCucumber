@@ -10,12 +10,12 @@ import java.util.HashMap;
 import java.util.Map;
 import static com.demoblaze.enums.APIResponseStatus.SUCCESS;
 
-public class AuthenticationApis {
+public class ApisAuthentications {
     private final RequestBuilder requestBuilder;
 
     private final String signup_serviceName = "signup";
 
-    public AuthenticationApis() {
+    public ApisAuthentications() {
         this.requestBuilder = new RequestBuilder();
     }
 
