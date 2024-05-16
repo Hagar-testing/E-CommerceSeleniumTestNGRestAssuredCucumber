@@ -53,7 +53,7 @@ public class SignupTest {
 
 
     @Test
-    public void registerUserWithExistingEmailGui(){
+    public void registerUserWithExistingEmail(){
         new ApisAuthentications()
                 .registerUser(getTestData(data, "username")+ timeStamp,
                         Objects.requireNonNull(getTestData(data, "password")));
