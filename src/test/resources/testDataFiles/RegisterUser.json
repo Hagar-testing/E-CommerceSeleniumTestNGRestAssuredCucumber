@@ -2,6 +2,7 @@
   "username": "Hagar",
   "password": "123_password",
   "messages": {
-    "user_creation": "Sign up successful."
+    "user_creation": "Sign up successful.",
+    "already_exist_user": "This user already exist."
   }
 }
