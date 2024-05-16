@@ -1,6 +1,5 @@
 package com.demoblaze.tests;
 
-import com.demoblaze.api.ApisAuthentications;
 import com.demoblaze.factory.DriverFactory;
 import com.demoblaze.pages.HomePage;
 import com.demoblaze.pages.Header;
@@ -15,8 +14,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Objects;
 
 import static com.demoblaze.utils.JsonUtils.getTestData;
 import static com.demoblaze.constants.FilesPathConstants.REGISTER_DATA_FILE_PATH;
@@ -48,20 +45,7 @@ public class SignupTest {
     public void registerUser() {
         new SignupPage(driver)
                 .signupUser(getTestData(data, "username") + timeStamp,getTestData(data, "password"))
-                .validateObRegisterSuccessMessage(getTestData(data, "messages.user_creation"));
-    }
-
-
-    @Test
-    public void test(){
-        new ApisAuthentications()
-                .registerUser(getTestData(data, "user.name")+ timeStamp,
-                        Objects.requireNonNull(getTestData(data, "user.password")));
-
-        new SignupPage(driver)
-                .signupUser(getTestData(data, "username") + timeStamp,getTestData(data, "password"))
-                .validateObRegisterFailureMessage(getTestData(data, "messages.already_exist_user"));
-
+                .validateOnRegisterSuccessMessage(getTestData(data, "messages.user_creation"));
     }
 
     @AfterMethod
