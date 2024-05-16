@@ -39,5 +39,4 @@ build/
 
 .idea
 
-/reports
 /target/allure-results
