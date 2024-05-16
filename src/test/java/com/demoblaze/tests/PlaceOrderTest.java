@@ -2,19 +2,19 @@ package com.demoblaze.tests;
 
 import com.demoblaze.api.ApisAuthentications;
 import com.demoblaze.factory.DriverFactory;
+import com.demoblaze.listener.TestngListener;
 import com.demoblaze.pages.*;
 import com.demoblaze.utils.JsonUtils;
 import com.google.gson.JsonObject;
 import io.qameta.allure.Feature;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
 import java.util.Objects;
 import static com.demoblaze.utils.JsonUtils.getTestData;
 import static com.demoblaze.constants.FilesPathConstants.CHECKOUT_DATA_FILE_PATH;
 
+@Listeners(TestngListener.class)
 @Feature("Place Order Feature")
 public class PlaceOrderTest {
     private  WebDriver driver;

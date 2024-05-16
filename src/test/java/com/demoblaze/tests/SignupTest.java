@@ -1,6 +1,7 @@
 package com.demoblaze.tests;
 
 import com.demoblaze.factory.DriverFactory;
+import com.demoblaze.listener.TestngListener;
 import com.demoblaze.pages.HomePage;
 import com.demoblaze.pages.Header;
 import com.demoblaze.pages.SignupPage;
@@ -10,14 +11,12 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static com.demoblaze.utils.JsonUtils.getTestData;
 import static com.demoblaze.constants.FilesPathConstants.REGISTER_DATA_FILE_PATH;
 
+@Listeners(TestngListener.class)
 @Feature("Signup Feature")
 public class SignupTest {
 

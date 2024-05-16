@@ -10,7 +10,9 @@ import static com.demoblaze.constants.FilesPathConstants.STEPS_PATH;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = FEATURES_PATH,
         glue = {STEPS_PATH},
-        plugin = {"pretty","html:target/cucumber.html","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"})
+        plugin = {"pretty",
+                "html:target/cucumber.html","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
 public class TestRunner {
 
 }

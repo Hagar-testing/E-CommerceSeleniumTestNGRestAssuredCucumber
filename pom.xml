@@ -43,10 +43,6 @@
                             <name>usedefaultlisteners</name>
                             <value>false</value>
                         </property>
-                        <property>
-                            <name>listener</name>
-                            <value>com.demoblaze.listener.TestngListener</value>
-                        </property>
                     </properties>
                 </configuration>
                 <dependencies>
@@ -162,14 +158,14 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
+        <!-- allure-junit4 -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
             <version>${allure.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber7-jvm -->
+        <!-- allure-cucumber7-jvm -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber7-jvm</artifactId>
@@ -177,5 +173,15 @@
         </dependency>
 
 
+        <!-- extentreports-cucumber7-adapter -->
+        <dependency>
+            <groupId>tech.grasshopper</groupId>
+            <artifactId>extentreports-cucumber7-adapter</artifactId>
+            <version>1.14.0</version>
+        </dependency>
+
+
+
     </dependencies>
+
 </project>
