@@ -1,4 +1,4 @@
-package steps;
+package com.demoblaze.steps;
 
 import com.demoblaze.api.ApisAuthentications;
 import com.demoblaze.factory.DriverFactory;
@@ -16,13 +16,13 @@ import java.util.Objects;
 import static com.demoblaze.constants.FilesPathConstants.CHECKOUT_DATA_FILE_PATH;
 import static com.demoblaze.utils.JsonUtils.getTestData;
 
-public class PlaceOrder {
+public class PlaceOrderStepDefinition {
 
     private final JsonObject testData;
     private final String timeStamp = String.valueOf(System.currentTimeMillis());
     WebDriver driver;
 
-    public PlaceOrder() {
+    public PlaceOrderStepDefinition() {
         testData = JsonUtils.parseJsonFile(CHECKOUT_DATA_FILE_PATH);
         driver = new DriverFactory().initializeDriver();
 

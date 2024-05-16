@@ -16,7 +16,7 @@ import static com.demoblaze.utils.JsonUtils.getTestData;
 import static com.demoblaze.constants.FilesPathConstants.CHECKOUT_DATA_FILE_PATH;
 
 @Feature("Place Order Feature")
-public class PlaceOrderTest {
+public class PlaceOrderStepDefinitionTest {
     private  WebDriver driver;
 
     private final String timeStamp = String.valueOf(System.currentTimeMillis());

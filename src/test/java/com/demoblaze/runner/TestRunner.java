@@ -8,7 +8,7 @@ import static com.demoblaze.constants.FilesPathConstants.FEATURES_PATH;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = FEATURES_PATH,
-        glue = {"steps"},
+        glue = {"com/demoblaze/steps"},
         plugin = {"html:target/cucumber.html"})
 public class TestRunner {
 

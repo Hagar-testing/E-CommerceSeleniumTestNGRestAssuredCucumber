@@ -1,4 +1,4 @@
-package steps;
+package com.demoblaze.steps;
 
 import com.demoblaze.factory.DriverFactory;
 import com.demoblaze.pages.Header;
@@ -15,13 +15,13 @@ import org.openqa.selenium.WebDriver;
 import static com.demoblaze.constants.FilesPathConstants.REGISTER_DATA_FILE_PATH;
 import static com.demoblaze.utils.JsonUtils.getTestData;
 
-public class SignupTestDefinition {
+public class SignupStepDefinition {
 
     private final JsonObject testData;
     private final String timeStamp = String.valueOf(System.currentTimeMillis());
     WebDriver driver;
 
-    public SignupTestDefinition() {
+    public SignupStepDefinition() {
         testData = JsonUtils.parseJsonFile(REGISTER_DATA_FILE_PATH);
         driver = new DriverFactory().initializeDriver();
     }
