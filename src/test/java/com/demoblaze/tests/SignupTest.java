@@ -25,8 +25,7 @@ public class SignupTest {
 
     private WebDriver driver;
     private String timeStamp;
-
-    JsonObject data ;
+    private JsonObject data ;
 
     @BeforeClass
     public void beforeClass(){
@@ -36,27 +35,34 @@ public class SignupTest {
     public void beforeMethod() {
         timeStamp = String.valueOf(System.currentTimeMillis());
         driver = new DriverFactory().initializeDriver();
-        new HomePage(driver)
-                .load();
-        new Header(driver)
-                .clickOnRegisterButton();
     }
 
     @Story("Registration Process")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully")
-    @Test
+    @Test(description = "Register New User Successfully")
     public void registerUser() {
+        new HomePage(driver)
+                .load();
+        new Header(driver)
+                .clickOnRegisterButton();
         new SignupPage(driver)
                 .signupUser(getTestData(data, "username") + timeStamp,getTestData(data, "password"))
                 .validateOnRegisterSuccessMessage(getTestData(data, "messages.user_creation"));
     }
 
 
-    @Test
+    @Story("Registration Process")
+    @Description("Given that I register with new user, When I enter an existing email, Then I should not be registered and an error message should appear")
+    @Test(description = "Register User with Existing Email")
     public void registerUserWithExistingEmail(){
         new ApisAuthentications()
                 .registerUser(getTestData(data, "username")+ timeStamp,
                         Objects.requireNonNull(getTestData(data, "password")));
+        new HomePage(driver)
+                .load();
+
+        new Header(driver)
+                .clickOnRegisterButton();
 
         new SignupPage(driver)
                 .signupUser(getTestData(data, "username") + timeStamp,getTestData(data, "password"))

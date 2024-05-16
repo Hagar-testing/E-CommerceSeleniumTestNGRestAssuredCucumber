@@ -6,7 +6,9 @@ import com.demoblaze.listener.TestngListener;
 import com.demoblaze.pages.*;
 import com.demoblaze.utils.JsonUtils;
 import com.google.gson.JsonObject;
+import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
@@ -17,10 +19,9 @@ import static com.demoblaze.constants.FilesPathConstants.CHECKOUT_DATA_FILE_PATH
 @Listeners(TestngListener.class)
 @Feature("Place Order Feature")
 public class PlaceOrderTest {
-    private  WebDriver driver;
-
+    private WebDriver driver;
     private final String timeStamp = String.valueOf(System.currentTimeMillis());
-    JsonObject data ;
+    private JsonObject data ;
 
     @BeforeClass
     public void beforeClass(){
@@ -31,8 +32,10 @@ public class PlaceOrderTest {
         driver = new DriverFactory().initializeDriver() ;
     }
 
-    @Test
-    public void verifyTwoProductsArePurchasedSuccessfully()  {
+    @Story("Purchase Process")
+    @Description("Given that I am a registered user, When I add two products to the cart and place an order, Then the products should be purchased successfully and a success message should appear")
+    @Test(description = "Verify Two Products are Purchased Successfully - GUI")
+    public void verifyTwoProductsArePurchasedSuccessfully() {
 
         new ApisAuthentications()
                 .registerUser(getTestData(data, "user.name")+ timeStamp,
