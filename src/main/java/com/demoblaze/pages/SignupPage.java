@@ -32,7 +32,13 @@ public class SignupPage {
 
     //region Validation
     @Step("Validate is {message} shown successfully!")
-    public SignupPage validateObRegisterSuccessMessage(String message){
+    public SignupPage validateOnRegisterSuccessMessage(String message){
+        assertEquals(getAlertMessage(driver),message);
+        return this ;
+    }
+
+    @Step("Validate is {message} shown successfully!")
+    public SignupPage validateObRegisterFailureMessage(String message){
         assertEquals(getAlertMessage(driver),message);
         return this ;
     }
