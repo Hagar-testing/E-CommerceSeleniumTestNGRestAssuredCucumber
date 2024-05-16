@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.Objects;
 import static com.demoblaze.utils.JsonUtils.getTestData;
-import static com.demoblaze.data.DataFilesPathConstants.CHECKOUT_DATA_FILE_PATH;
+import static com.demoblaze.constants.FilesPathConstants.CHECKOUT_DATA_FILE_PATH;
 
 @Feature("Place Order Feature")
 public class PlaceOrderTest {

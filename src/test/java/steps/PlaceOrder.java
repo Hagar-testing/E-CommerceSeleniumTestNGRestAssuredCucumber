@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.Objects;
 
-import static com.demoblaze.data.DataFilesPathConstants.CHECKOUT_DATA_FILE_PATH;
+import static com.demoblaze.constants.FilesPathConstants.CHECKOUT_DATA_FILE_PATH;
 import static com.demoblaze.utils.JsonUtils.getTestData;
 
 public class PlaceOrder {

@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import java.util.Objects;
 
 import static com.demoblaze.utils.JsonUtils.getTestData;
-import static com.demoblaze.data.DataFilesPathConstants.REGISTER_DATA_FILE_PATH;
+import static com.demoblaze.constants.FilesPathConstants.REGISTER_DATA_FILE_PATH;
 
 @Feature("Signup Feature")
 public class SignupTest {
