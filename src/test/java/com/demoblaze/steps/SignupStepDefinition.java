@@ -6,6 +6,8 @@ import com.demoblaze.pages.HomePage;
 import com.demoblaze.pages.SignupPage;
 import com.demoblaze.utils.JsonUtils;
 import com.google.gson.JsonObject;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -47,5 +49,10 @@ public class SignupStepDefinition {
     @Then("I should see a success message indicating the account is created")
     public void validateOnAccountCreation(){
         new SignupPage(driver).validateOnRegisterSuccessMessage(getTestData(testData, "messages.user_creation"));
+    }
+
+    @After
+    public void after(){
+        driver.quit();
     }
 }

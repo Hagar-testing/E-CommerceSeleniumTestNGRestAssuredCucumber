@@ -5,6 +5,8 @@ import com.demoblaze.factory.DriverFactory;
 import com.demoblaze.pages.*;
 import com.demoblaze.utils.JsonUtils;
 import com.google.gson.JsonObject;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -136,5 +138,9 @@ public class PlaceOrderStepDefinition {
                 .validateOnSuccessMessageOfPurchaseOrder(getTestData(testData, "messages.place_order"));
     }
 
+    @After
+    public void after(){
+        driver.quit();
+    }
 }
 
