@@ -23,8 +23,10 @@ public class ExtentReport {
     }
 
     public static void createTest(String testCaseName) {
-        test = report.createTest(testCaseName);
-        threadLocal.set(test);
+        if(threadLocal.get() != null) {
+            test = report.createTest(testCaseName);
+            threadLocal.set(test);
+        }
     }
 
     public static void removeTest(String testCaseName) {
@@ -38,47 +40,47 @@ public class ExtentReport {
     }
 
     public static void info(Markup m) {
-        threadLocal.get().info(m);
+        if(threadLocal.get() != null) threadLocal.get().info(m);
     }
 
     public static void pass(String message) {
-        threadLocal.get().pass(message);
+        if(threadLocal.get() != null) threadLocal.get().pass(message);
     }
 
     public static void pass(Markup m) {
-        threadLocal.get().pass(m);
+        if(threadLocal.get() != null) threadLocal.get().pass(m);
     }
 
     public static void fail(String message) {
-        threadLocal.get().fail(message);
+        if(threadLocal.get() != null) threadLocal.get().fail(message);
     }
 
     public static void fail(Markup m) {
-        threadLocal.get().fail(m);
+        if(threadLocal.get() != null) threadLocal.get().fail(m);
     }
 
     public static void fail(Throwable t) {
-        threadLocal.get().fail(t);
+        if(threadLocal.get() != null) threadLocal.get().fail(t);
     }
 
     public static void fail(Media media) {
-        threadLocal.get().fail(media);
+        if(threadLocal.get() != null) threadLocal.get().fail(media);
     }
 
     public static void skip(String message) {
-        threadLocal.get().skip(message);
+        if(threadLocal.get() != null) threadLocal.get().skip(message);
     }
 
     public static void skip(Markup m) {
-        threadLocal.get().skip(m);
+        if(threadLocal.get() != null) threadLocal.get().skip(m);
     }
 
     public static void skip(Throwable t) {
-        threadLocal.get().skip(t);
+        if(threadLocal.get() != null) threadLocal.get().skip(t);
     }
 
     public static void flushReports() {
-        report.flush();
+        if(threadLocal.get() != null) report.flush();
     }
 
 }
