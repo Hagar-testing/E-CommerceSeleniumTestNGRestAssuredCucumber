@@ -40,4 +40,4 @@ build/
 .idea
 
 /reports
-/allure-results
+/target/allure-results
