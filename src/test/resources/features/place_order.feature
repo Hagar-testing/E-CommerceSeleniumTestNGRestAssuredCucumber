@@ -1,3 +1,4 @@
+@PlaceOrder
 Feature: Purchase Products on DemoBlaze Website
 
     Scenario: Purchase Multiple Products Successfully

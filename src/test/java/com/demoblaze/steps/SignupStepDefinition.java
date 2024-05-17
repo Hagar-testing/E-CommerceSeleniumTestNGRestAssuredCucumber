@@ -51,7 +51,7 @@ public class SignupStepDefinition {
         new SignupPage(driver).validateOnRegisterSuccessMessage(getTestData(testData, "messages.user_creation"));
     }
 
-    @After
+    @After("@Signup")
     public void after(){
         driver.quit();
     }

@@ -138,7 +138,7 @@ public class PlaceOrderStepDefinition {
                 .validateOnSuccessMessageOfPurchaseOrder(getTestData(testData, "messages.place_order"));
     }
 
-    @After
+    @After("@PlaceOrder")
     public void after(){
         driver.quit();
     }
