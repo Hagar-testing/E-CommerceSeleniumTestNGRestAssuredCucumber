@@ -33,7 +33,7 @@
 * Implemented regions to make the code more readable and organized.
 
 ### Running test cases on Chrome ###
-
+https://github.com/Hagar-testing/E-CommerceSeleniumTestNGRestAssuredCucumber/assets/138511085/7a1ce2fd-675c-4d87-8c07-90e9f9c45980
 
 ### Allure Report ##
 <img width="829" alt="image" src="https://github.com/Hagar-testing/E-CommerceSeleniumTestNGRestAssuredCucumber/assets/138511085/5daf902e-2abd-4718-8f4a-77ee62655421">
