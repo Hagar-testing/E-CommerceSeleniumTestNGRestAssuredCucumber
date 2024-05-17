@@ -39,7 +39,7 @@ public class SignupTest {
 
     @Story("Registration Process")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully")
-    @Test(description = "Register New User Successfully")
+    @Test(description = "Register New User Successfully - GUI")
     public void registerUser() {
         new HomePage(driver)
                 .load();
