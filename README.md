@@ -36,6 +36,9 @@
 
 
 ### Allure Report ##
+<img width="829" alt="image" src="https://github.com/Hagar-testing/E-CommerceSeleniumTestNGRestAssuredCucumber/assets/138511085/5daf902e-2abd-4718-8f4a-77ee62655421">
 
 ### Extent Report ##
+<img width="953" alt="image" src="https://github.com/Hagar-testing/E-CommerceSeleniumTestNGRestAssuredCucumber/assets/138511085/ef7d1015-f396-40e7-982d-9e352202de16">
+
 
