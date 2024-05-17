@@ -15,10 +15,10 @@
 * Have a supporting Utils package in *src/main/java/com/demoblaze/utils* file path, named ***"Utils"*** 
 
 ### How to run the project main test cases locally:
-* A properties file ***"prod.properties"*** can be found in *config* package including all the configurations needed in the execution
-* Can find the test cases in the *src/test/java* folder mainly in the *tests* package
-* To start the execution, open a command-line terminal on the project root path and type `mvn clean test`
-*After executing, you can easily generate the ***Allure Report*** by opening a command-line terminal on the project root path and type `allure serve target/allure-results` (needs to be able to execute mvn commands); Or you can find the Extent Report in this path 'target/extend-report'
+* A properties files can be found in *resources* package including all the configurations needed in the execution.
+* Can find the test cases in the *src/test/java* folder mainly in the *tests* package.
+* To start the execution, open a command-line terminal on the project root path and type `mvn clean test`.
+* After executing, you can easily generate the ***Allure Report*** by opening a command-line terminal on the project root path and type `allure serve target/allure-results` (needs to be able to execute mvn commands); Or you can find the Extent Report in this path 'target/extend-report'.
 
 ### Followed several best practices, including:
 * Avoiding Page Factory.
