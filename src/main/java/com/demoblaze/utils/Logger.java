@@ -5,7 +5,6 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.model.Media;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
-import org.apache.log4j.LogManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -13,10 +12,8 @@ import org.openqa.selenium.WebDriver;
 
 public class Logger {
 
-    private static final org.apache.log4j.Logger log = LogManager.getLogger(Logger.class);
     @Step("{message}")
     public static void logStep(String message) {
-        log.info(message);
         System.out.println(message);
         ExtentReport.info(message);
     }
