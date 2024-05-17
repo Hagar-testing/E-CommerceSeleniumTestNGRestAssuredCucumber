@@ -1,6 +1,6 @@
 package com.demoblaze.tests;
 
-import com.demoblaze.api.ApisAuthentications;
+import com.demoblaze.api.ApisAuthentication;
 import com.demoblaze.factory.DriverFactory;
 import com.demoblaze.listener.TestngListener;
 import com.demoblaze.pages.*;
@@ -37,7 +37,7 @@ public class PlaceOrderTest {
     @Test(description = "Verify Two Products are Purchased Successfully - GUI")
     public void verifyTwoProductsArePurchasedSuccessfully() {
 
-        new ApisAuthentications()
+        new ApisAuthentication()
                 .registerUser(getTestData(data, "user.name")+ timeStamp,
                         Objects.requireNonNull(getTestData(data, "user.password")));
 

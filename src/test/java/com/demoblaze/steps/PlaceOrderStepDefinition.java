@@ -1,6 +1,6 @@
 package com.demoblaze.steps;
 
-import com.demoblaze.api.ApisAuthentications;
+import com.demoblaze.api.ApisAuthentication;
 import com.demoblaze.factory.DriverFactory;
 import com.demoblaze.pages.*;
 import com.demoblaze.utils.JsonUtils;
@@ -34,7 +34,7 @@ public class PlaceOrderStepDefinition {
 
     @Given("I am a registered user on DemoBlaze")
     public void registerUser() {
-        new ApisAuthentications()
+        new ApisAuthentication()
                 .registerUser(
                         getTestData(testData, "user.name") + timeStamp,
                         Objects.requireNonNull(getTestData(testData, "user.password")));

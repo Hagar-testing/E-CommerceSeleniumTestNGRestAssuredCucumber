@@ -1,6 +1,6 @@
 package com.demoblaze.tests;
 
-import com.demoblaze.api.ApisAuthentications;
+import com.demoblaze.api.ApisAuthentication;
 import com.demoblaze.factory.DriverFactory;
 import com.demoblaze.listener.TestngListener;
 import com.demoblaze.pages.HomePage;
@@ -55,7 +55,7 @@ public class SignupTest {
     @Description("Given that I register with new user, When I enter an existing email, Then I should not be registered and an error message should appear")
     @Test(description = "Register User with Existing Email")
     public void registerUserWithExistingEmail(){
-        new ApisAuthentications()
+        new ApisAuthentication()
                 .registerUser(getTestData(data, "username")+ timeStamp,
                         Objects.requireNonNull(getTestData(data, "password")));
         new HomePage(driver)
