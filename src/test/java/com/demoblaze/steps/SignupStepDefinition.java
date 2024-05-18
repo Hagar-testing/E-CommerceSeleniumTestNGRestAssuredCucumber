@@ -7,7 +7,6 @@ import com.demoblaze.pages.SignupPage;
 import com.demoblaze.utils.JsonUtils;
 import com.google.gson.JsonObject;
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,6 +15,7 @@ import org.openqa.selenium.WebDriver;
 
 import static com.demoblaze.constants.FilesPathConstants.REGISTER_DATA_FILE_PATH;
 import static com.demoblaze.utils.JsonUtils.getTestData;
+
 
 public class SignupStepDefinition {
 
@@ -27,6 +27,7 @@ public class SignupStepDefinition {
         testData = JsonUtils.parseJsonFile(REGISTER_DATA_FILE_PATH);
         driver = new DriverFactory().initializeDriver();
     }
+
 
     @Given("I am on the DemoBlaze homepage")
     public void navigateToHomePage(){

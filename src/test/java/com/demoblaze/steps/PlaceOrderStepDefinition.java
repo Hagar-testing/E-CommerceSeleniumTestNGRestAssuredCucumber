@@ -6,7 +6,6 @@ import com.demoblaze.pages.*;
 import com.demoblaze.utils.JsonUtils;
 import com.google.gson.JsonObject;
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,6 +16,7 @@ import java.util.Objects;
 
 import static com.demoblaze.constants.FilesPathConstants.CHECKOUT_DATA_FILE_PATH;
 import static com.demoblaze.utils.JsonUtils.getTestData;
+
 
 public class PlaceOrderStepDefinition {
 

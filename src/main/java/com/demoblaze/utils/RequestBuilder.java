@@ -2,8 +2,6 @@ package com.demoblaze.utils;
 
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.demoblaze.enums.RequestType;
-import com.demoblaze.utils.ExtentReport;
-import com.demoblaze.utils.Logger;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
