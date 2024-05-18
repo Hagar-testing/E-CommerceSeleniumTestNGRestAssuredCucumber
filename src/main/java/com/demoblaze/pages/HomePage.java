@@ -36,8 +36,8 @@ public class HomePage {
     }
     @Step("Select product with index: {productIndex}")
     public HomePage selectProduct(Integer productIndex, String title)  {
-        WaitUtils.waitForTextToBePresentInElement(driver,getProductTitle(productIndex),title);
         elementActions
+                .waitForTextToBePresentInElement(getProductTitle(productIndex),title)
                 .click(getProductTitle(productIndex));
         return this;
     }
