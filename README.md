@@ -1,6 +1,6 @@
 # E-Commerce-Selenium-TestNG-RestAssured-Cucumber
 
-### The main Frameworks included in the project:
+### Tools and technologies used in the project:
 * Selenium Webdriver
 * TestNG
 * Rest Assured
