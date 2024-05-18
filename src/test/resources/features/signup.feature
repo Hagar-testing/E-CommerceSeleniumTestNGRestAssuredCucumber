@@ -1,4 +1,4 @@
-@Signup
+@Signup @Cucumber
 Feature: User Registration on DemoBlaze Website
     This feature describes the process of user registration on the DemoBlaze website.
 

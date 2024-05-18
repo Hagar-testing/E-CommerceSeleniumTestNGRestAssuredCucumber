@@ -9,13 +9,15 @@ import com.google.gson.JsonObject;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import io.qameta.allure.testng.Tag;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
 import java.util.Objects;
-import static com.demoblaze.utils.JsonUtils.getTestData;
-import static com.demoblaze.constants.FilesPathConstants.CHECKOUT_DATA_FILE_PATH;
 
+import static com.demoblaze.constants.FilesPathConstants.CHECKOUT_DATA_FILE_PATH;
+import static com.demoblaze.utils.JsonUtils.getTestData;
+@Tag("TestNG")
 @Listeners(TestngListener.class)
 @Feature("Place Order Feature")
 public class PlaceOrderTest {
@@ -31,6 +33,7 @@ public class PlaceOrderTest {
     public void beforeMethod() {
         driver = new DriverFactory().initializeDriver() ;
     }
+
 
     @Story("Purchase Process")
     @Description("Given that I am a registered user, When I add two products to the cart and place an order, Then the products should be purchased successfully and a success message should appear")
