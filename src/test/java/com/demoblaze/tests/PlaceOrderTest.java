@@ -25,15 +25,6 @@ public class PlaceOrderTest {
     private final String timeStamp = String.valueOf(System.currentTimeMillis());
     private JsonObject data ;
 
-    @BeforeClass
-    public void beforeClass(){
-       data = JsonUtils.parseJsonFile(CHECKOUT_DATA_FILE_PATH);
-    }
-    @BeforeMethod
-    public void beforeMethod() {
-        driver = new DriverFactory().initializeDriver() ;
-    }
-
 
     @Story("Purchase Process")
     @Description("Given that I am a registered user, When I add two products to the cart and place an order, Then the products should be purchased successfully and a success message should appear")
@@ -98,9 +89,22 @@ public class PlaceOrderTest {
 
     }
 
+    //region Configurations
+    @BeforeClass
+    public void beforeClass(){
+        data = JsonUtils.parseJsonFile(CHECKOUT_DATA_FILE_PATH);
+    }
+    @BeforeMethod
+    public void beforeMethod() {
+        driver = new DriverFactory().initializeDriver() ;
+    }
+
+
     @AfterMethod
     public void afterMethod(){
         driver.quit();
     }
+
+    //endregion
 
 }

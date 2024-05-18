@@ -31,16 +31,6 @@ public class SignupTest {
     private String timeStamp;
     private JsonObject data ;
 
-    @BeforeClass
-    public void beforeClass(){
-        data = JsonUtils.parseJsonFile(REGISTER_DATA_FILE_PATH);
-    }
-    @BeforeMethod
-    public void beforeMethod() {
-        timeStamp = String.valueOf(System.currentTimeMillis());
-        driver = new DriverFactory().initializeDriver();
-    }
-
     @Story("Registration Process")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully")
     @Test(description = "Register New User Successfully - GUI")
@@ -73,9 +63,20 @@ public class SignupTest {
                 .validateOnRegisterSuccessMessage(getTestData(data, "messages.already_exist_user"));
     }
 
+    //region Configurations
+    @BeforeClass
+    public void beforeClass(){
+        data = JsonUtils.parseJsonFile(REGISTER_DATA_FILE_PATH);
+    }
     @AfterMethod
     public void afterMethod(){
         driver.quit();
     }
+    @BeforeMethod
+    public void beforeMethod() {
+        timeStamp = String.valueOf(System.currentTimeMillis());
+        driver = new DriverFactory().initializeDriver();
+    }
+    //endregion
 
 }

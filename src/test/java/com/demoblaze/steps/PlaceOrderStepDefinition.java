@@ -28,7 +28,6 @@ public class PlaceOrderStepDefinition {
         testData = JsonUtils.parseJsonFile(CHECKOUT_DATA_FILE_PATH);
         driver = new DriverFactory().initializeDriver();
 
-
     }
 
 
@@ -137,10 +136,11 @@ public class PlaceOrderStepDefinition {
         new PlaceOrderPage(driver)
                 .validateOnSuccessMessageOfPurchaseOrder(getTestData(testData, "messages.place_order"));
     }
-
+    //region Configurations
     @After("@PlaceOrder")
     public void after(){
         driver.quit();
     }
+    //endregion
 }
 

@@ -51,9 +51,10 @@ public class SignupStepDefinition {
     public void validateOnAccountCreation(){
         new SignupPage(driver).validateOnRegisterSuccessMessage(getTestData(testData, "messages.user_creation"));
     }
-
+    //region Configurations
     @After("@Signup")
     public void after(){
         driver.quit();
     }
+    //endregion
 }
