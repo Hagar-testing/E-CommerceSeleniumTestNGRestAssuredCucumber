@@ -20,10 +20,6 @@ public class ElementActions {
     }
 
     public WebElement locateElement(By targetElementLocator) {
-         return waitForElementToBePresent(targetElementLocator);
-    }
-
-    private WebElement waitForElementToBePresent(By targetElementLocator) {
         try {
             WebElement element = WaitUtils.waitForVisibilityOfElement(driver,targetElementLocator);
             if (!element.isDisplayed()) {
@@ -39,6 +35,12 @@ public class ElementActions {
         }
     }
 
+
+
+    public ElementActions waitForElementToBeVisible(By targetElementLocator){
+        locateElement(targetElementLocator);
+        return this;
+    }
 
     public ElementActions type(WebDriver driver, By elementLocator, String text, boolean clearBeforeTyping) {
         WebElement element = locateElement(elementLocator);
@@ -104,6 +106,11 @@ public class ElementActions {
             Logger.logStep(e.getMessage());
             throw e;
         }
+        return this;
+    }
+
+    public ElementActions waitForTextToBePresentInElement(By locator, String text){
+        WaitUtils.waitForTextToBePresentInElement(driver,locator,text);
         return this;
     }
 
