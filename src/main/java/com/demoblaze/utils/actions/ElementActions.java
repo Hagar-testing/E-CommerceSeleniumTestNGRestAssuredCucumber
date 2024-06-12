@@ -22,8 +22,6 @@ public class ElementActions {
 
     public Boolean isElementDisplayed (By element){
         WebElement element1 = locateElement(element);
-        System.out.println("ElementActions  isElementDisplayed" + element1);
-
         return element1.isDisplayed();
     }
 
@@ -33,8 +31,6 @@ public class ElementActions {
             if(Objects.equals(element.getCssValue("display"), "none")) {
                 return WaitUtils.waitForVisibilityOfElement(driver, targetElementLocator);
             } else {
-                System.out.println("ElementActions  locate directly" + element);
-
                 return element;
             }
 
@@ -113,7 +109,11 @@ public class ElementActions {
     }
 
     public ElementActions click(By locator) {
-        locateElement(locator).click();
+        try{
+            locateElement(locator).click();
+        } catch (ElementNotInteractableException e){
+            clickUsingJavascript(locator);
+        }
         logElementActionStep(driver,"Click on", locator);
         return this;
     }
