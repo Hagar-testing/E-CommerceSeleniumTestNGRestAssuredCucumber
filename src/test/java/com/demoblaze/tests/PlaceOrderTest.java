@@ -113,7 +113,7 @@ public class PlaceOrderTest {
 
     @AfterMethod
     public void afterMethod(){
-       // getDriver().quit();
+        getDriver().quit();
     }
 
     //endregion
