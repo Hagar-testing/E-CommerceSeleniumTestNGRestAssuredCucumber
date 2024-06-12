@@ -7,10 +7,10 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
     private final ElementActions elementActions;
-    final By loginTitle_h5 = By.id("logInModalLabel");
-    final By username_input = By.id("loginusername");
-    final By password_input = By.id("loginpassword");
-    final By login_button = By.cssSelector("button[onclick='logIn()']");
+    private final By loginTitle_h5 = By.id("logInModalLabel");
+    private final By username_input = By.id("loginusername");
+    private final By password_input = By.id("loginpassword");
+    private final By login_button = By.cssSelector("button[onclick='logIn()']");
     public LoginPage(WebDriver driver){
         this.elementActions = new ElementActions(driver);
     }

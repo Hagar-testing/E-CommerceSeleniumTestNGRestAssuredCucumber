@@ -11,7 +11,6 @@ import org.openqa.selenium.WebDriver;
 public class HomePage {
     private final WebDriver driver;
     private final ElementActions elementActions;
-
     private By getSubCategoryLocator(String categoryName) {
         return By.linkText(categoryName);
     }

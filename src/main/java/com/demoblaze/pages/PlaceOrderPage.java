@@ -10,13 +10,13 @@ import static org.testng.Assert.assertEquals;
 
 public class PlaceOrderPage {
     private final ElementActions elementActions;
-    final By name_input = By.id("name");
-    final By country_input = By.id("country");
-    final By city_input = By.id("city");
-    final By month_input = By.id("month");
-    final By card_input = By.id("card");
-    final By year_input = By.id("year");
-    final By purchase_button = By.cssSelector("button[onclick*='purchase']");
+    private final By name_input = By.id("name");
+    private final By country_input = By.id("country");
+    private final By city_input = By.id("city");
+    private final By month_input = By.id("month");
+    private final By card_input = By.id("card");
+    private final By year_input = By.id("year");
+    private final By purchase_button = By.cssSelector("button[onclick*='purchase']");
     private final By totalPrice_label = By.id("totalm");
     private final By successMessage_h3 = By.cssSelector("div[class*='alert'] h2");
 

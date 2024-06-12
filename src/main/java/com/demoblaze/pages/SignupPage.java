@@ -11,9 +11,9 @@ import static org.testng.Assert.assertEquals;
 public class SignupPage {
     private final WebDriver driver;
     private final ElementActions elementActions;
-    final By username_input = By.id("sign-username");
-    final By password_input = By.id("sign-password");
-    final By signup_button = By.cssSelector("button[onclick='register()']");
+    private final By username_input = By.id("sign-username");
+    private final By password_input = By.id("sign-password");
+    private final By signup_button = By.cssSelector("button[onclick='register()']");
 
     public SignupPage(WebDriver driver) {
         this.driver = driver;

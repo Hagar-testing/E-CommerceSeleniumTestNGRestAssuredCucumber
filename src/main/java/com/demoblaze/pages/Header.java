@@ -10,10 +10,10 @@ import static org.testng.AssertJUnit.assertTrue;
 public class Header {
 
     ElementActions elementActions;
-    final By signup_a = By.cssSelector("a[id*='signin']");
-    final By login_a = By.cssSelector("a[id*='login']");
-    final By welcome_button = By.id("nameofuser");
-    final By cart_a = By.cssSelector("a[id*='cart']");
+    private final By signup_a = By.cssSelector("a[id*='signin']");
+    private final By login_a = By.cssSelector("a[id*='login']");
+    private final By welcome_button = By.id("nameofuser");
+    private final By cart_a = By.cssSelector("a[id*='cart']");
 
     public Header(WebDriver driver){
         elementActions = new ElementActions(driver);

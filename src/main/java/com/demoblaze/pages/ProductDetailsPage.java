@@ -12,7 +12,7 @@ import static org.testng.AssertJUnit.assertEquals;
 public class ProductDetailsPage {
     private final WebDriver driver;
     private final ElementActions elementActions;
-    final By addToCart_a = By.cssSelector("a[onclick*='addToCart']");
+    private final By addToCart_a = By.cssSelector("a[onclick*='addToCart']");
 
     public ProductDetailsPage(WebDriver driver){
         this.driver = driver;
