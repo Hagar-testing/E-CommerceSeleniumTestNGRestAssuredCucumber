@@ -27,19 +27,19 @@ import static com.demoblaze.utils.JsonUtils.getTestData;
 @Feature("Signup Feature")
 public class SignupTest {
 
-    private WebDriver driver;
     private String timeStamp;
     private JsonObject data ;
+    protected ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     @Story("Registration Process")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully")
     @Test(description = "Register New User Successfully - GUI")
     public void registerUser() {
-        new HomePage(driver)
+        new HomePage(getDriver())
                 .load();
-        new Header(driver)
+        new Header(getDriver())
                 .clickOnRegisterButton();
-        new SignupPage(driver)
+        new SignupPage(getDriver())
                 .signupUser(getTestData(data, "username") + timeStamp,getTestData(data, "password"))
                 .validateOnRegisterSuccessMessage(getTestData(data, "messages.user_creation"));
     }
@@ -52,16 +52,26 @@ public class SignupTest {
         new ApisAuthentication()
                 .registerUser(getTestData(data, "username")+ timeStamp,
                         Objects.requireNonNull(getTestData(data, "password")));
-        new HomePage(driver)
+        new HomePage(getDriver())
                 .load();
 
-        new Header(driver)
+        new Header(getDriver())
                 .clickOnRegisterButton();
 
-        new SignupPage(driver)
+        new SignupPage(getDriver())
                 .signupUser(getTestData(data, "username") + timeStamp,getTestData(data, "password"))
                 .validateOnRegisterSuccessMessage(getTestData(data, "messages.already_exist_user"));
     }
+
+    //region WebDriver
+    public void setDriver(WebDriver driver){
+        this.driver.set(driver);
+    }
+
+    public WebDriver getDriver(){
+        return driver.get();
+    }
+    //endregion
 
     //region Configurations
     @BeforeClass
@@ -70,12 +80,12 @@ public class SignupTest {
     }
     @AfterMethod
     public void afterMethod(){
-        driver.quit();
+        getDriver().quit();
     }
     @BeforeMethod
     public void beforeMethod() {
         timeStamp = String.valueOf(System.currentTimeMillis());
-        driver = new DriverFactory().initializeDriver();
+        setDriver(new DriverFactory().initializeDriver());
     }
     //endregion
 

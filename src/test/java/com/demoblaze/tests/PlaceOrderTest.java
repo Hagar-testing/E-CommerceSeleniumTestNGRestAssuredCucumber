@@ -21,9 +21,11 @@ import static com.demoblaze.utils.JsonUtils.getTestData;
 @Listeners(TestngListener.class)
 @Feature("Place Order Feature")
 public class PlaceOrderTest {
-    private WebDriver driver;
     private final String timeStamp = String.valueOf(System.currentTimeMillis());
     private JsonObject data ;
+
+    protected ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
 
 
     @Story("Purchase Process")
@@ -35,39 +37,39 @@ public class PlaceOrderTest {
                 .registerUser(getTestData(data, "user.name")+ timeStamp,
                         Objects.requireNonNull(getTestData(data, "user.password")));
 
-        new HomePage(driver)
+        new HomePage(getDriver())
                 .load();
-        new Header(driver)
+        new Header(getDriver())
                 .clickOnLoginButton();
 
-        new LoginPage(driver)
+        new LoginPage(getDriver())
                 .loginUser(getTestData(data, "user.name")+ timeStamp, getTestData(data, "user.password"));
 
-        new Header(driver)
+        new Header(getDriver())
                 .validateOnAccountIsOpenedSuccessfully();
 
-        new HomePage(driver)
+        new HomePage(getDriver())
                 .selectCategory(getTestData(data, "category.name"))
                 .selectProduct(1,getTestData(data, "category.products.first_product.title"));
-        new ProductDetailsPage(driver)
+        new ProductDetailsPage(getDriver())
                 .clickOnAddToCartButton()
                 .validateOnSuccessMessageOfAddProductToCart(getTestData(data, "messages.add_product_to_cart"))
                 .hideAlertDialog()
                 .navigateBack()
                 .navigateBack();
 
-        new HomePage(driver)
+        new HomePage(getDriver())
                 .selectProduct(2,getTestData(data, "category.products.second_product.title"));
 
-        new ProductDetailsPage(driver)
+        new ProductDetailsPage(getDriver())
                 .clickOnAddToCartButton()
                 .validateOnSuccessMessageOfAddProductToCart(getTestData(data, "messages.add_product_to_cart"))
                 .hideAlertDialog();
 
-        new Header(driver)
+        new Header(getDriver())
                 .clickOnCartButton();
 
-        new CartPage(driver)
+        new CartPage(getDriver())
                 .validateOnItemAddedInCart(getTestData(data, "category.products.first_product.title"))
                 .validateOnProductPrices(getTestData(data, "category.products.first_product.title"), getTestData(data, "category.products.first_product.price"))
                 .validateOnItemAddedInCart(getTestData(data, "category.products.second_product.title"))
@@ -75,7 +77,7 @@ public class PlaceOrderTest {
                 .validateOnTotalProductPrice(getTestData(data, "cart.total_price"))
                 .clickOnPlaceOrderButton();
 
-        new PlaceOrderPage(driver)
+        new PlaceOrderPage(getDriver())
                 .validateOnTotalPriceInPlaceOrder(getTestData(data, "cart.total_price"))
                 .fillOrderInformationAndPurchase(
                         getTestData(data, "place_order_data.name"),
@@ -88,6 +90,15 @@ public class PlaceOrderTest {
 
 
     }
+    //region WebDriver
+    public void setDriver(WebDriver driver){
+        this.driver.set(driver);
+    }
+
+    public WebDriver getDriver(){
+        return driver.get();
+    }
+    //endregion
 
     //region Configurations
     @BeforeClass
@@ -96,13 +107,13 @@ public class PlaceOrderTest {
     }
     @BeforeMethod
     public void beforeMethod() {
-        driver = new DriverFactory().initializeDriver() ;
+        setDriver(new DriverFactory().initializeDriver());
     }
 
 
     @AfterMethod
     public void afterMethod(){
-        driver.quit();
+       // getDriver().quit();
     }
 
     //endregion
