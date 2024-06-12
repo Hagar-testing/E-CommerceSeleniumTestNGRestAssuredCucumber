@@ -32,53 +32,54 @@ public class ExtentReport {
     }
 
     public static void info(String message) {
-        if (test != null) {
+        if (threadLocal.get() != null) {
+
             threadLocal.get().info(message);
         }
     }
 
     public static void info(Markup m) {
-        if(test != null) threadLocal.get().info(m);
+        if(threadLocal.get() != null) threadLocal.get().info(m);
     }
 
     public static void pass(String message) {
-        if(test != null) threadLocal.get().pass(message);
+        if(threadLocal.get() != null) threadLocal.get().pass(message);
     }
 
     public static void pass(Markup m) {
-        if(test != null) threadLocal.get().pass(m);
+        if(threadLocal.get() != null) threadLocal.get().pass(m);
     }
 
     public static void fail(String message) {
-        if(test != null) threadLocal.get().fail(message);
+        if(threadLocal.get() != null) threadLocal.get().fail(message);
     }
 
     public static void fail(Markup m) {
-        if(test != null) threadLocal.get().fail(m);
+        if(threadLocal.get() != null) threadLocal.get().fail(m);
     }
 
     public static void fail(Throwable t) {
-        if(test != null) threadLocal.get().fail(t);
+        if(threadLocal.get() != null) threadLocal.get().fail(t);
     }
 
     public static void fail(Media media) {
-        if(test != null) threadLocal.get().fail(media);
+        if(threadLocal.get() != null) threadLocal.get().fail(media);
     }
 
     public static void skip(String message) {
-        if(test != null) threadLocal.get().skip(message);
+        if(threadLocal.get() != null) threadLocal.get().skip(message);
     }
 
     public static void skip(Markup m) {
-        if(test != null) threadLocal.get().skip(m);
+        if(threadLocal.get() != null) threadLocal.get().skip(m);
     }
 
     public static void skip(Throwable t) {
-        if(test != null) threadLocal.get().skip(t);
+        if(threadLocal.get() != null) threadLocal.get().skip(t);
     }
 
     public static void flushReports() {
-        if(test != null) report.flush();
+        if(threadLocal.get() != null) report.flush();
     }
 
 }
