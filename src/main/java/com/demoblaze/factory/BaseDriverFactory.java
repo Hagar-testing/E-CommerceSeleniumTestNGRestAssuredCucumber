@@ -2,7 +2,7 @@ package com.demoblaze.factory;
 
 import org.openqa.selenium.WebDriver;
 
-public abstract class BaseDriverFactory {
+interface BaseDriverFactory {
 
-     abstract WebDriver getDriver();
+      WebDriver getDriver();
 }

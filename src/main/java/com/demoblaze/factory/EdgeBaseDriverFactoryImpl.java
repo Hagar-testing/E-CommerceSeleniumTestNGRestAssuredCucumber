@@ -4,9 +4,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class EdgeBaseDriverFactoryImpl extends BaseDriverFactory {
+public class EdgeBaseDriverFactoryImpl implements BaseDriverFactory {
+
     @Override
-    WebDriver getDriver() {
+    public WebDriver getDriver() {
         WebDriverManager.edgedriver().setup();
         return new EdgeDriver();
     }
