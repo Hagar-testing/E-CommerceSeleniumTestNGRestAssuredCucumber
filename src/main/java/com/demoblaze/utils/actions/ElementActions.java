@@ -29,20 +29,8 @@ public class ElementActions {
 
     public WebElement locateElement(By targetElementLocator) {
         try {
-//            WebElement element = WaitUtils.waitForVisibilityOfElement(driver,targetElementLocator);
-//            if (!element.isDisplayed()) {
-//                findElement(driver, targetElementLocator); // Scroll if needed
-//            }
-//            return element;
             WebElement element =  driver.findElement(targetElementLocator);
-            System.out.println("ElementActions Element " + element);
-
-            System.out.println("ElementActions Element CSS: display=" + element.getCssValue("display") + ", visibility=" + element.getCssValue("visibility"));
-            System.out.println("Element HTML: " + element.getAttribute("outerHTML"));
-            System.out.println("ElementActions Element CSS: is displayed =" + element.getCssValue("display") + ", visibility=" + element.getCssValue("visibility"));
-
             if(Objects.equals(element.getCssValue("display"), "none")) {
-                System.out.println("ElementActions  wait" + element);
                 return WaitUtils.waitForVisibilityOfElement(driver, targetElementLocator);
             } else {
                 System.out.println("ElementActions  locate directly" + element);
@@ -50,21 +38,8 @@ public class ElementActions {
                 return element;
             }
 
-        } catch (NoSuchElementException e){
+        } catch (Exception e){
             return WaitUtils.waitForVisibilityOfElement(driver, targetElementLocator);
-
-        }
-
-        catch (TimeoutException toe) {
-            System.out.println("ElementActions  error  timeout");
-
-            Logger.logStep("Element not found after waiting for seconds with locator: " + targetElementLocator.toString());
-            throw toe;
-        } catch (Exception exception) { // Catch more specific exceptions if needed
-            System.out.println("ElementActions  error  other");
-
-            Logger.logStep("Error finding element: " + exception.getMessage() + ", Locator: " + targetElementLocator.toString());
-            throw exception;
         }
     }
 
@@ -78,18 +53,18 @@ public class ElementActions {
 
     public String getElementText(By by) {
         WebElement element = locateElement(by);
-        try {
-            return element.getText();
-        } catch (Exception e) {
+        String text = element.getText();
+        if (text.isEmpty()) {
             return waitForNonEmptyText(by);
         }
+        return text;
     }
 
     // Method to wait for element text
     private String waitForNonEmptyText(By by) {
         Wait<WebDriver> wait =
                 new FluentWait<>(driver)
-                        .withTimeout(Duration.ofSeconds(5))
+                        .withTimeout(Duration.ofSeconds(15))
                         .pollingEvery(Duration.ofMillis(300));
         return wait.until(
                 d -> {
@@ -115,16 +90,10 @@ public class ElementActions {
                 }
             } else {
                 // We type here! :D
-                System.out.println("ElementActions  before send keys" + element);
-
                 element.sendKeys(text);
-                System.out.println("ElementActions  after send keys" + element);
-
                 // logElementActionStep(driver, "Type [" + text + "] on", elementLocator);
             }
         }  catch (ElementNotInteractableException e){
-            System.out.println("ElementActions  ElementNotInteractableException" + element);
-
             // Type using JavascriptExecutor in case of the data is not typed successfully
             // using the Selenium sendKeys method
             if (!element.getAttribute("value").contains(text)) {
@@ -133,8 +102,6 @@ public class ElementActions {
             }
         }
         catch (Exception e) {
-            System.out.println("ElementActions  exception send keys" + element);
-
             Logger.logStep(e.getMessage());
             throw e;
         }
