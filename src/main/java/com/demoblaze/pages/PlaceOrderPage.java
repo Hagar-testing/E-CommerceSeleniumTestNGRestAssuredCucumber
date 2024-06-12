@@ -48,7 +48,7 @@ public class PlaceOrderPage {
 
     @Step("Validate on total price in place order page")
     public PlaceOrderPage validateOnTotalPriceInPlaceOrder(String totalPrice){
-        String currentTotalPrice = getNumberFromText(elementActions.locateElement(totalPrice_label).getText());
+        String currentTotalPrice = getNumberFromText(elementActions.getElementText(totalPrice_label));
         assertEquals(currentTotalPrice,totalPrice);
         return this;
     }
