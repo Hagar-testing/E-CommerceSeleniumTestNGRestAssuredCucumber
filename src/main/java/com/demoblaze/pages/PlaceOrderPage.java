@@ -54,7 +54,7 @@ public class PlaceOrderPage {
     }
     @Step("Validate is {message} shown successfully!")
     public PlaceOrderPage validateOnSuccessMessageOfPurchaseOrder(String message){
-        String currentMessage = elementActions.locateElement(successMessage_h3).getText();
+        String currentMessage = elementActions.getElementText(successMessage_h3);
         assertEquals(currentMessage,message);
         return this;
     }
