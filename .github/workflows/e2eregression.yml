@@ -1,12 +1,10 @@
 name: E2E regression testing
-
 on:
   pull_request:
     branches: [ master ]
   schedule:
     - cron: '00 4 * * *'
   workflow_dispatch:
-
 jobs:
   E2E_Chrome_Linux_Test:
     runs-on: ubuntu-latest
@@ -24,6 +22,10 @@ jobs:
         uses: stCarolas/setup-maven@v4.5
         with:
           maven-version: 3.9.6
+      - name: Setup WebDriverManager
+        uses: bboniguitto/actions-selenium@v4
+        with:
+          args: '--headless'  # If running headless Chrome
       - name: Run Tests
         continue-on-error: true
         run: mvn clean test
