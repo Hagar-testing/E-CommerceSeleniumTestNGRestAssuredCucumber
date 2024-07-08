@@ -23,7 +23,8 @@ import static com.demoblaze.utils.JsonUtils.getTestData;
 public class PlaceOrderTest {
     private final String timeStamp = String.valueOf(System.currentTimeMillis());
     private JsonObject data ;
-    protected ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    WebDriver driver;
+    //protected ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     @Test
     public void validateOnAccountIsOpenedSuccessfully()  {
@@ -43,11 +44,13 @@ public class PlaceOrderTest {
         new Header(getDriver())
                 .validateOnAccountIsOpenedSuccessfully();
 
+        System.out.println("Test Bug" + "First" + getDriver());
 
     }
 
     @Test(dependsOnMethods = {"validateOnAccountIsOpenedSuccessfully"})
     public void addFirstProductToCart(){
+        System.out.println("Test Bug" + "addFirstProductToCart" + getDriver());
         new HomePage(getDriver())
                 .selectCategory(getTestData(data, "category.name"))
                 .selectProduct(1,getTestData(data, "category.products.first_product.title"));
@@ -107,11 +110,11 @@ public class PlaceOrderTest {
 
     //region WebDriver
     public void setDriver(WebDriver driver){
-        this.driver.set(driver);
+       this.driver = driver;
     }
 
     public WebDriver getDriver(){
-        return driver.get();
+        return driver;
     }
     //endregion
 
@@ -124,8 +127,9 @@ public class PlaceOrderTest {
     }
 
     @AfterClass
-    public void beforeTest(){
-        getDriver().quit();
+    public void afterClass(){
+        System.out.println("Affffffter class");
+       // getDriver().quit();
 
     }
     //endregion
