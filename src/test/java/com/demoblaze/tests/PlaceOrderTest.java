@@ -129,7 +129,7 @@ public class PlaceOrderTest {
     @AfterClass
     public void afterClass(){
         System.out.println("Affffffter class");
-       // getDriver().quit();
+       getDriver().quit();
 
     }
     //endregion
