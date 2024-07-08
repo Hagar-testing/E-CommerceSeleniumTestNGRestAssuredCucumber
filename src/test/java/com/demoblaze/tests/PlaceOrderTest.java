@@ -23,18 +23,13 @@ import static com.demoblaze.utils.JsonUtils.getTestData;
 public class PlaceOrderTest {
     private final String timeStamp = String.valueOf(System.currentTimeMillis());
     private JsonObject data ;
-
     protected ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-
-
-    @Story("Purchase Process")
-    @Description("Given that I am a registered user, When I add two products to the cart and place an order, Then the products should be purchased successfully and a success message should appear")
-    @Test(description = "Verify Two Products are Purchased Successfully - GUI")
-    public void verifyTwoProductsArePurchasedSuccessfully() {
-
+    @Test
+    public void validateOnAccountIsOpenedSuccessfully()  {
         new ApisAuthentication()
-                .registerUser(getTestData(data, "user.name")+ timeStamp,
+                .registerUser(
+                        getTestData(data, "user.name")+ timeStamp,
                         Objects.requireNonNull(getTestData(data, "user.password")));
 
         new HomePage(getDriver())
@@ -48,12 +43,24 @@ public class PlaceOrderTest {
         new Header(getDriver())
                 .validateOnAccountIsOpenedSuccessfully();
 
+
+    }
+
+    @Test(dependsOnMethods = {"validateOnAccountIsOpenedSuccessfully"})
+    public void addFirstProductToCart(){
         new HomePage(getDriver())
                 .selectCategory(getTestData(data, "category.name"))
                 .selectProduct(1,getTestData(data, "category.products.first_product.title"));
         new ProductDetailsPage(getDriver())
                 .clickOnAddToCartButton()
-                .validateOnSuccessMessageOfAddProductToCart(getTestData(data, "messages.add_product_to_cart"))
+                .validateOnSuccessMessageOfAddProductToCart(getTestData(data, "messages.add_product_to_cart"));
+
+    }
+
+    @Test(dependsOnMethods = {"addFirstProductToCart"})
+
+    public void addSecondProductToCart(){
+        new ProductDetailsPage(getDriver())
                 .hideAlertDialog()
                 .navigateBack()
                 .navigateBack();
@@ -63,7 +70,12 @@ public class PlaceOrderTest {
 
         new ProductDetailsPage(getDriver())
                 .clickOnAddToCartButton()
-                .validateOnSuccessMessageOfAddProductToCart(getTestData(data, "messages.add_product_to_cart"))
+                .validateOnSuccessMessageOfAddProductToCart(getTestData(data, "messages.add_product_to_cart"));
+    }
+
+    @Test(dependsOnMethods = {"addSecondProductToCart"})
+    public void makeSureProductsAreAddedSuccessfully(){
+        new ProductDetailsPage(getDriver())
                 .hideAlertDialog();
 
         new Header(getDriver())
@@ -76,7 +88,10 @@ public class PlaceOrderTest {
                 .validateOnProductPrices(getTestData(data, "category.products.second_product.title"), getTestData(data, "category.products.second_product.price"))
                 .validateOnTotalProductPrice(getTestData(data, "cart.total_price"))
                 .clickOnPlaceOrderButton();
+    }
 
+    @Test(dependsOnMethods = {"makeSureProductsAreAddedSuccessfully"})
+    public void placeOrderData(){
         new PlaceOrderPage(getDriver())
                 .validateOnTotalPriceInPlaceOrder(getTestData(data, "cart.total_price"))
                 .fillOrderInformationAndPurchase(
@@ -88,8 +103,8 @@ public class PlaceOrderTest {
                         getTestData(data, "place_order_data.year"))
                 .validateOnSuccessMessageOfPurchaseOrder(getTestData(data, "messages.place_order"));
 
-
     }
+
     //region WebDriver
     public void setDriver(WebDriver driver){
         this.driver.set(driver);
@@ -104,18 +119,15 @@ public class PlaceOrderTest {
     @BeforeClass
     public void beforeClass(){
         data = JsonUtils.parseJsonFile(CHECKOUT_DATA_FILE_PATH);
-    }
-    @BeforeMethod
-    public void beforeMethod() {
         setDriver(new DriverFactory().initializeDriver());
+
     }
 
-
-    @AfterMethod
-    public void afterMethod(){
+    @AfterClass
+    public void beforeTest(){
         getDriver().quit();
-    }
 
+    }
     //endregion
 
 }
