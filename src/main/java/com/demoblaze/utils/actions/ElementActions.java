@@ -72,7 +72,7 @@ public class ElementActions {
     public String getElementText(By locator) {
         Wait<WebDriver> wait =
                 new FluentWait<>(driver)
-                        .withTimeout(Duration.ofSeconds(10))
+                        .withTimeout(Duration.ofSeconds(15))
                         .pollingEvery(Duration.ofMillis(300))
                         .ignoring(NoSuchElementException.class)
                         .ignoring(ElementNotInteractableException.class);
@@ -85,7 +85,7 @@ public class ElementActions {
     
     public ElementActions type(WebDriver driver, By elementLocator, String text, boolean clearBeforeTyping) {
         Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(10))
+                .withTimeout(Duration.ofSeconds(20))
                 .pollingEvery(Duration.ofMillis(300))
                 .ignoring(ElementNotInteractableException.class)
                 .ignoring(IllegalArgumentException.class);
@@ -116,7 +116,8 @@ public class ElementActions {
                         .withTimeout(Duration.ofSeconds(10))
                         .pollingEvery(Duration.ofMillis(300))
                         .ignoring(NoSuchElementException.class)
-                        .ignoring(ElementNotInteractableException.class);
+                        .ignoring(ElementNotInteractableException.class)
+                        .ignoring(StaleElementReferenceException.class);
 
         wait.until(f -> {
             driver.findElement(locator).click();
