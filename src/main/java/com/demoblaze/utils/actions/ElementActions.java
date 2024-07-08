@@ -10,143 +10,128 @@ import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
-import static com.demoblaze.utils.JavascriptExecutorUtils.*;
 
 public class ElementActions {
 
+    // TODO: 7/6/2024 Add logs
     final WebDriver driver;
-    public ElementActions(WebDriver driver){
+
+    public ElementActions(WebDriver driver) {
         this.driver = driver;
     }
 
-    public Boolean isElementDisplayed (By element){
-        WebElement element1 = locateElement(element);
-        return element1.isDisplayed();
+    // TODO: 7/8/2024 Move to Assertion file
+    public Boolean isElementDisplayed(By locator) {
+        logElementActionStep(driver,"" , locator);
+        Wait<WebDriver> wait =
+                new FluentWait<>(driver)
+                        .withTimeout(Duration.ofSeconds(10))
+                        .pollingEvery(Duration.ofMillis(300))
+                        .ignoring(ElementNotInteractableException.class)
+                        .ignoring(NoSuchElementException.class)
+                        .ignoring(StaleElementReferenceException.class);
+
+        AtomicReference<Boolean> actualText = new AtomicReference<>(false);
+        wait.until(f -> {
+            boolean isDisplayed = driver.findElement(locator).isDisplayed();
+            actualText.set(isDisplayed);
+            return isDisplayed;
+        });
+        return actualText.get();
     }
 
-    public WebElement locateElement(By targetElementLocator) {
-        try {
-            WebElement element =  driver.findElement(targetElementLocator);
-            if(Objects.equals(element.getCssValue("display"), "none")) {
-                return WaitUtils.waitForVisibilityOfElement(driver, targetElementLocator);
-            } else {
-                return element;
-            }
 
-        } catch (Exception e){
-            return WaitUtils.waitForVisibilityOfElement(driver, targetElementLocator);
-        }
+    // TODO: 7/6/2024  check name
+    public WebElement locateElement(By locator) {
+        AtomicReference<WebElement> webElement = new AtomicReference<>();
+
+        Wait<WebDriver> wait =
+                new FluentWait<>(driver)
+                        .withTimeout(Duration.ofSeconds(10))
+                        .pollingEvery(Duration.ofMillis(300))
+                        .ignoring(NoSuchElementException.class);
+
+        wait.until(f -> {
+            webElement.set(driver.findElement(locator));
+            return true;
+        });
+        return webElement.get();
+
     }
 
 
-
-    public ElementActions waitForElementToBeVisible(By targetElementLocator){
+    // TODO: 7/6/2024 Check waiting
+    public ElementActions waitForElementToBeVisible(By targetElementLocator) {
         locateElement(targetElementLocator);
         return this;
     }
 
 
-    public String getElementText(By by) {
-        WebElement element = locateElement(by);
-        String text = element.getText();
-        if (text.isEmpty()) {
-            return waitForNonEmptyText(by);
-        }
-        return text;
-    }
-
-    // Method to wait for element text
-    private String waitForNonEmptyText(By by) {
+    public String getElementText(By locator) {
         Wait<WebDriver> wait =
                 new FluentWait<>(driver)
-                        .withTimeout(Duration.ofSeconds(15))
-                        .pollingEvery(Duration.ofMillis(300));
-        return wait.until(
-                d -> {
-                    WebElement element = locateElement(by);
-                    String text = element.getText();
-                    return !text.isEmpty() ? text : null;
-                });
-    }
-    public ElementActions type(WebDriver driver, By elementLocator, String text, boolean clearBeforeTyping) {
-        WebElement element = locateElement(elementLocator);
-        try {
-            // Clear before typing condition
-            if (!element.getAttribute("value").isBlank() && clearBeforeTyping) {
-                element.clear();
-                // We type here! :D
-                element.sendKeys(text);
-                logElementActionStep(driver, "Clear and Type [" + text + "] on", elementLocator);
+                        .withTimeout(Duration.ofSeconds(10))
+                        .pollingEvery(Duration.ofMillis(300))
+                        .ignoring(NoSuchElementException.class)
+                        .ignoring(ElementNotInteractableException.class);
 
-                // Type using JavascriptExecutor in case of the data is not typed successfully
-                // using the Selenium sendKeys method
-                if (!element.getAttribute("value").equals(text)) {
-                    sendInput(driver, elementLocator, text);
-                }
-            } else {
-                // We type here! :D
+        wait.until(f -> {
+            return !driver.findElement(locator).getText().isEmpty();
+        });
+        return driver.findElement(locator).getText();
+    }
+    
+    public ElementActions type(WebDriver driver, By elementLocator, String text, boolean clearBeforeTyping) {
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(300))
+                .ignoring(ElementNotInteractableException.class)
+                .ignoring(IllegalArgumentException.class);
+
+
+        wait.until(f -> {
+            WebElement element = driver.findElement(elementLocator);
+            if (element.isDisplayed() && element.isEnabled()) {
+                if (clearBeforeTyping) element.clear();
                 element.sendKeys(text);
-                // logElementActionStep(driver, "Type [" + text + "] on", elementLocator);
+                return true;
             }
-        }  catch (ElementNotInteractableException e){
-            // Type using JavascriptExecutor in case of the data is not typed successfully
-            // using the Selenium sendKeys method
-            if (!element.getAttribute("value").contains(text)) {
-                String currentValue = element.getAttribute("value");
-                sendInput(driver, elementLocator, currentValue + text);
-            }
-        }
-        catch (Exception e) {
-            Logger.logStep(e.getMessage());
-            throw e;
-        }
+            return false;
+        });
+
+
         return this;
     }
 
-    public ElementActions type( By elementLocator, String text) {
+    public ElementActions type(By elementLocator, String text) {
         return type(driver, elementLocator, text, true);
     }
 
     public ElementActions click(By locator) {
-        try{
-            locateElement(locator).click();
-        } catch (ElementNotInteractableException e){
-            clickUsingJavascript(locator);
-        }
-        logElementActionStep(driver,"Click on", locator);
+
+        Wait<WebDriver> wait =
+                new FluentWait<>(driver)
+                        .withTimeout(Duration.ofSeconds(10))
+                        .pollingEvery(Duration.ofMillis(300))
+                        .ignoring(NoSuchElementException.class)
+                        .ignoring(ElementNotInteractableException.class);
+
+        wait.until(f -> {
+            driver.findElement(locator).click();
+            return true;
+        });
+        return this;
+
+    }
+
+    public ElementActions waitForTextToBePresentInElement(By locator, String text) {
+        WaitUtils.waitForTextToBePresentInElement(driver, locator, text);
         return this;
     }
 
-    public ElementActions clickUsingJavascript(By locator) {
-        logElementActionStep(driver,"click using javascript",locator);
-        executeJavaScriptClick(driver,locator);
-
-        return this;
-    }
-
-    public ElementActions select(By elementLocator, SelectType selectType, String option) {
-        try {
-            Select select = new Select(driver.findElement(elementLocator));
-            logElementActionStep(driver, "Select [" + option + "] from", elementLocator);
-            switch (selectType) {
-                case TEXT -> select.selectByVisibleText(option);
-                case VALUE -> select.selectByValue(option);
-                default -> Logger.logStep("Unexpected value: " + selectType);
-            }
-        } catch (Exception e) {
-            Logger.logStep(e.getMessage());
-            throw e;
-        }
-        return this;
-    }
-
-    public ElementActions waitForTextToBePresentInElement(By locator, String text){
-        WaitUtils.waitForTextToBePresentInElement(driver,locator,text);
-        return this;
-    }
-
-    private  void logElementActionStep(WebDriver driver, String action, By elementLocator) {
+    private void logElementActionStep(WebDriver driver, String action, By elementLocator) {
         try {
             String elementName = driver.findElement(elementLocator).getAccessibleName();
             if ((elementName != null && !elementName.isEmpty())) {
@@ -154,7 +139,7 @@ public class ElementActions {
             } else {
                 Logger.logStep("[Element Action] " + action + " [" + elementLocator + "] element");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             Logger.logStep("[Element Action] " + action + " [" + elementLocator + "] element");
         }
 
