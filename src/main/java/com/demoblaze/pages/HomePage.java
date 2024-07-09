@@ -23,8 +23,9 @@ public class HomePage {
     }
 
     @Step("Open Home Page")
-    public void load(){
+    public HomePage load(){
         driver.get(ConfigUtils.getBaseUrl());
+        return this;
     }
 
     @Step("Select category: {categoryName}")
@@ -33,11 +34,14 @@ public class HomePage {
         return this;
     }
     @Step("Select product with index: {productIndex}")
-    public HomePage selectProduct(Integer productIndex, String title)  {
+    public ProductDetailsPage selectProduct(Integer productIndex, String title)  {
         actionsBot
                 .waitForTextToBePresentInElement(getProductTitle(productIndex),title)
                 .click(getProductTitle(productIndex));
-        return this;
+        return new ProductDetailsPage(driver);
     }
 
+    public Header navigateToHeader(){
+        return new Header(driver);
+    }
 }

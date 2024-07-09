@@ -15,7 +15,11 @@ public class Header {
     private final By welcome_button = By.id("nameofuser");
     private final By cart_a = By.cssSelector("a[id*='cart']");
 
+    private final WebDriver driver;
+
+
     public Header(WebDriver driver){
+        this.driver = driver;
         actionsBot = new ActionsBot(driver);
     }
     @Step("Click on signup button")
@@ -24,13 +28,15 @@ public class Header {
     }
 
     @Step("Click on login button")
-    public void clickOnLoginButton(){
+    public LoginPage clickOnLoginButton(){
         actionsBot.click(login_a);
+        return new LoginPage(driver);
     }
 
     @Step("Click on cart button")
-    public void clickOnCartButton(){
+    public CartPage clickOnCartButton(){
         actionsBot.click(cart_a);
+        return new CartPage(driver);
     }
 
     //region Validations

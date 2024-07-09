@@ -5,7 +5,8 @@ import org.openqa.selenium.WebDriver;
 public class BrowserBot {
 
 
-    public static void navigateBack(WebDriver driver){
+    public  BrowserBot navigateBack(WebDriver driver){
         driver.navigate().back();
+        return new BrowserBot();
     }
 }

@@ -6,9 +6,7 @@ import com.demoblaze.listener.TestngListener;
 import com.demoblaze.pages.*;
 import com.demoblaze.utils.JsonUtils;
 import com.google.gson.JsonObject;
-import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
 import io.qameta.allure.testng.Tag;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
@@ -24,7 +22,6 @@ public class PlaceOrderTest {
     private final String timeStamp = String.valueOf(System.currentTimeMillis());
     private JsonObject data ;
     WebDriver driver;
-    //protected ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     @Test
     public void validateOnAccountIsOpenedSuccessfully()  {
@@ -34,27 +31,20 @@ public class PlaceOrderTest {
                         Objects.requireNonNull(getTestData(data, "user.password")));
 
         new HomePage(getDriver())
-                .load();
-        new Header(getDriver())
-                .clickOnLoginButton();
-
-        new LoginPage(getDriver())
-                .loginUser(getTestData(data, "user.name")+ timeStamp, getTestData(data, "user.password"));
-
-        new Header(getDriver())
+                .load()
+                .navigateToHeader()
+                .clickOnLoginButton()
+                .loginUser(getTestData(data, "user.name")+ timeStamp, getTestData(data, "user.password"))
+                .navigateToHeader()
                 .validateOnAccountIsOpenedSuccessfully();
-
-        System.out.println("Test Bug" + "First" + getDriver());
 
     }
 
     @Test(dependsOnMethods = {"validateOnAccountIsOpenedSuccessfully"})
     public void addFirstProductToCart(){
-        System.out.println("Test Bug" + "addFirstProductToCart" + getDriver());
         new HomePage(getDriver())
                 .selectCategory(getTestData(data, "category.name"))
-                .selectProduct(1,getTestData(data, "category.products.first_product.title"));
-        new ProductDetailsPage(getDriver())
+                .selectProduct(1,getTestData(data, "category.products.first_product.title"))
                 .clickOnAddToCartButton()
                 .validateOnSuccessMessageOfAddProductToCart(getTestData(data, "messages.add_product_to_cart"));
 
@@ -66,12 +56,7 @@ public class PlaceOrderTest {
         new ProductDetailsPage(getDriver())
                 .hideAlertDialog()
                 .navigateBack()
-                .navigateBack();
-
-        new HomePage(getDriver())
-                .selectProduct(2,getTestData(data, "category.products.second_product.title"));
-
-        new ProductDetailsPage(getDriver())
+                .selectProduct(2,getTestData(data, "category.products.second_product.title"))
                 .clickOnAddToCartButton()
                 .validateOnSuccessMessageOfAddProductToCart(getTestData(data, "messages.add_product_to_cart"));
     }
@@ -79,12 +64,9 @@ public class PlaceOrderTest {
     @Test(dependsOnMethods = {"addSecondProductToCart"})
     public void makeSureProductsAreAddedSuccessfully(){
         new ProductDetailsPage(getDriver())
-                .hideAlertDialog();
-
-        new Header(getDriver())
-                .clickOnCartButton();
-
-        new CartPage(getDriver())
+                .hideAlertDialog()
+                .navigateToHeader()
+                .clickOnCartButton()
                 .validateOnItemAddedInCart(getTestData(data, "category.products.first_product.title"))
                 .validateOnProductPrices(getTestData(data, "category.products.first_product.title"), getTestData(data, "category.products.first_product.price"))
                 .validateOnItemAddedInCart(getTestData(data, "category.products.second_product.title"))
@@ -128,7 +110,6 @@ public class PlaceOrderTest {
 
     @AfterClass
     public void afterClass(){
-        System.out.println("Affffffter class");
        getDriver().quit();
 
     }

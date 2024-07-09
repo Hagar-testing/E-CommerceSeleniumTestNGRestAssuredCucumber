@@ -27,14 +27,18 @@ public class ProductDetailsPage {
 
     @Step("Hide add to cart alert dialog")
     public ProductDetailsPage hideAlertDialog(){
-       dismissAlertDialog(driver);
+        dismissAlertDialog(driver);
         return this;
     }
     @Step("Navigate back")
-    public ProductDetailsPage navigateBack(){
-        BrowserBot.navigateBack(driver);
-        return this;
+    public HomePage navigateBack(){
+        new BrowserBot().navigateBack(driver).navigateBack(driver);
+        return new HomePage(driver);
     }
+    public Header navigateToHeader(){
+        return new Header(driver);
+    }
+
 
     //region Validations
     @Step("Validate that {message} of add product to cart is shown successfully!")

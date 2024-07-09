@@ -10,17 +10,21 @@ public class LoginPage {
     private final By username_input = By.id("loginusername");
     private final By password_input = By.id("loginpassword");
     private final By login_button = By.cssSelector("button[onclick='logIn()']");
+
+    private final WebDriver driver;
+
     public LoginPage(WebDriver driver){
+        this.driver = driver;
         this.actionsBot = new ActionsBot(driver);
     }
 
     @Step("User Signup with Correct UserName: {userName} and Password: {password}")
-    public LoginPage loginUser(String userName, String password) {
+    public HomePage loginUser(String userName, String password) {
         actionsBot
                 .type(username_input,userName)
                 .type(password_input, password)
                 .click(login_button);
-        return this;
+        return new HomePage(driver);
 
     }
 }

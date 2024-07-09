@@ -41,9 +41,10 @@ public class PlaceOrderStepDefinition {
 
     @When("I log in to the website with valid credentials")
     public void loginToWebsite() {
-        new HomePage(driver).load();
-        new Header(driver).clickOnLoginButton();
-        new LoginPage(driver).loginUser(getTestData(testData,"user.name") + timeStamp, getTestData(testData,"user.password"));
+        new HomePage(driver).load()
+                .navigateToHeader()
+                .clickOnLoginButton()
+                .loginUser(getTestData(testData,"user.name") + timeStamp, getTestData(testData,"user.password"));
     }
 
     @Then("I validate that the account is opened successfully")
@@ -59,8 +60,7 @@ public class PlaceOrderStepDefinition {
     @When("I add the first product to my cart")
     public void addFirstProductToCart() {
         new HomePage(driver)
-                .selectProduct(1, getTestData(testData, "category.products.first_product.title"));
-        new ProductDetailsPage(driver)
+                .selectProduct(1, getTestData(testData, "category.products.first_product.title"))
                 .clickOnAddToCartButton();
     }
 
@@ -75,10 +75,7 @@ public class PlaceOrderStepDefinition {
     public void addSecondProductToCart() {
         new ProductDetailsPage(driver)
                 .navigateBack()
-                .navigateBack();
-        new HomePage(driver)
-                .selectProduct(2, getTestData(testData, "category.products.second_product.title"));
-        new ProductDetailsPage(driver)
+                .selectProduct(2, getTestData(testData, "category.products.second_product.title"))
                 .clickOnAddToCartButton();
     }
 
