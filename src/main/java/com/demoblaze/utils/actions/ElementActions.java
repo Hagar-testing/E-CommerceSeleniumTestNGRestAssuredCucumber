@@ -6,31 +6,31 @@ import org.openqa.selenium.*;
 
 
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
 public class ElementActions {
 
-    // TODO: 7/6/2024 Add logs
-    // TODO: 7/6/2024 Wait in wait utils then add action here
-
+    // TODO: Create assertion file
     final WebDriver driver;
 
     public ElementActions(WebDriver driver) {
         this.driver = driver;
     }
 
-    // TODO: 7/8/2024 Move to Assertion file
-
     public Boolean isElementDisplayed(By locator) {
-        logElementActionStep("Check if element is displayed",locator );
-        return WaitUtils.waitForElementToBeDisplayed(driver,locator);
+        logElementActionStep("Check if element is displayed", locator);
+        WaitUtils.waitForElementToBeDisplayed(driver, locator);
+        return driver.findElement(locator).isDisplayed();
     }
-
 
     public String getElementText(By locator) {
-        WaitUtils.waitForTextToBePresentInElement(driver,locator);
+        logElementActionStep("Get element text", locator);
+        WaitUtils.waitForTextToBePresentInElement(driver, locator);
         return driver.findElement(locator).getText();
-
-
     }
+
     public ElementActions type(By locator, String text, boolean clearBeforeTyping) {
         logElementActionStep("Typing text into element", locator);
         WaitUtils.waitForTyping(driver, locator, text, clearBeforeTyping);
@@ -43,11 +43,13 @@ public class ElementActions {
 
     public ElementActions click(By locator) {
         logElementActionStep("Click on element", locator);
-        WaitUtils.waitForElementToClick(driver, locator);
+        WaitUtils.waitForElementToBeClickable(driver, locator);
+        driver.findElement(locator).click();
         return this;
     }
 
     public ElementActions waitForTextToBePresentInElement(By locator, String text) {
+        logElementActionStep("Wait for text to present in element", locator);
         WaitUtils.waitForTextToBe(driver, locator, text);
         return this;
     }

@@ -31,18 +31,13 @@ public class WaitUtils {
         });
     }
 
-    public static boolean waitForElementToClick(WebDriver driver, By locator) {
+    public static boolean waitForElementToBeClickable(WebDriver driver, By locator) {
         Wait<WebDriver> wait = createWait(driver);
         return wait.until(d -> {
             WebElement element = driver.findElement(locator);
-            if (element.isDisplayed() && element.isEnabled()) {
-                element.click();
-                return true;
-            }
-            return false;
+            return element.isDisplayed() && element.isEnabled();
         });
     }
-
     public static boolean waitForElementToBeDisplayed(WebDriver driver, By locator) {
         Wait<WebDriver> wait = createWait(driver);
         return wait.until(d -> driver.findElement(locator).isDisplayed());
