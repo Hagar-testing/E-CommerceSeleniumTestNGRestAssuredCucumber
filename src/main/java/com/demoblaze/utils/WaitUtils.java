@@ -6,18 +6,6 @@ import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.ElementNotInteractableException;
-
-import java.time.Duration;
-import java.util.function.Function;
-
 public class WaitUtils {
 
     public static Wait<WebDriver> createWait(WebDriver driver) {
@@ -26,7 +14,8 @@ public class WaitUtils {
                 .pollingEvery(Duration.ofMillis(300))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(ElementNotInteractableException.class)
-                .ignoring(StaleElementReferenceException.class);
+                .ignoring(StaleElementReferenceException.class)
+                .ignoring(NoAlertPresentException.class);
     }
 
     public static boolean waitForTyping(WebDriver driver, By locator, String text, boolean clearBeforeTyping) {
@@ -61,5 +50,18 @@ public class WaitUtils {
     public static boolean waitForTextToBePresentInElement(WebDriver driver, By locator) {
         Wait<WebDriver> wait = createWait(driver);
         return wait.until(f -> !driver.findElement(locator).getText().isEmpty());
+    }
+
+    public static Boolean waitForTextToBe(WebDriver driver, By locator, String text){
+        Wait<WebDriver> wait = createWait(driver);
+        return wait.until(f -> driver.findElement(locator).getText().equals(text));
+    }
+
+    public static void waitForAlertToPresent(WebDriver driver){
+        Wait<WebDriver> wait = createWait(driver);
+        wait.until(d -> {
+            driver.switchTo().alert();
+            return true;
+        });
     }
 }

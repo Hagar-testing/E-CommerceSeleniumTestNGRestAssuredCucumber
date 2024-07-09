@@ -3,7 +3,7 @@ package com.demoblaze.utils.actions;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 
-import static com.demoblaze.utils.WaitUtils2.waitForAlertToPresent;
+import static com.demoblaze.utils.WaitUtils.waitForAlertToPresent;
 
 public class AlertActions {
 

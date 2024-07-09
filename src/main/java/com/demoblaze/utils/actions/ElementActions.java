@@ -2,13 +2,8 @@ package com.demoblaze.utils.actions;
 
 import com.demoblaze.utils.Logger;
 import com.demoblaze.utils.WaitUtils;
-import com.demoblaze.utils.WaitUtils2;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
 
-import java.time.Duration;
-import java.util.concurrent.atomic.AtomicReference;
 
 
 public class ElementActions {
@@ -28,29 +23,6 @@ public class ElementActions {
         logElementActionStep("Check if element is displayed",locator );
         return WaitUtils.waitForElementToBeDisplayed(driver,locator);
     }
-
-//    public WebElement locateElement(By locator) {
-//        AtomicReference<WebElement> webElement = new AtomicReference<>();
-//
-//        Wait<WebDriver> wait =
-//                new FluentWait<>(driver)
-//                        .withTimeout(Duration.ofSeconds(10))
-//                        .pollingEvery(Duration.ofMillis(300))
-//                        .ignoring(NoSuchElementException.class);
-//
-//        wait.until(f -> {
-//            webElement.set(driver.findElement(locator));
-//            return true;
-//        });
-//        return webElement.get();
-//
-//    }
-//
-//
-//    public ElementActions waitForElementToBeVisible(By targetElementLocator) {
-//        locateElement(targetElementLocator);
-//        return this;
-//    }
 
 
     public String getElementText(By locator) {
@@ -76,7 +48,7 @@ public class ElementActions {
     }
 
     public ElementActions waitForTextToBePresentInElement(By locator, String text) {
-        WaitUtils2.waitForTextToBePresentInElement(driver, locator, text);
+        WaitUtils.waitForTextToBe(driver, locator, text);
         return this;
     }
 
