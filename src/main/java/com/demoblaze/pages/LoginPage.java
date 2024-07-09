@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
     private final ElementActions elementActions;
-    private final By loginTitle_h5 = By.id("logInModalLabel");
     private final By username_input = By.id("loginusername");
     private final By password_input = By.id("loginpassword");
     private final By login_button = By.cssSelector("button[onclick='logIn()']");
@@ -18,7 +17,6 @@ public class LoginPage {
     @Step("User Signup with Correct UserName: {userName} and Password: {password}")
     public LoginPage loginUser(String userName, String password) {
         elementActions
-                .waitForElementToBeVisible(loginTitle_h5)
                 .type(username_input,userName)
                 .type(password_input, password)
                 .click(login_button);
