@@ -23,8 +23,9 @@ public class Header {
         actionsBot = new ActionsBot(driver);
     }
     @Step("Click on signup button")
-    public void clickOnRegisterButton(){
+    public SignupPage clickOnRegisterButton(){
         actionsBot.click(signup_a);
+        return new SignupPage(driver);
     }
 
     @Step("Click on login button")

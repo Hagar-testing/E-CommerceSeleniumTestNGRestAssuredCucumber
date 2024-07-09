@@ -36,10 +36,9 @@ public class SignupTest {
     @Test(description = "Register New User Successfully - GUI")
     public void registerUser() {
         new HomePage(getDriver())
-                .load();
-        new Header(getDriver())
-                .clickOnRegisterButton();
-        new SignupPage(getDriver())
+                .load()
+                .navigateToHeader()
+                .clickOnRegisterButton()
                 .signupUser(getTestData(data, "username") + timeStamp,getTestData(data, "password"))
                 .validateOnRegisterSuccessMessage(getTestData(data, "messages.user_creation"));
     }
@@ -53,12 +52,9 @@ public class SignupTest {
                 .registerUser(getTestData(data, "username")+ timeStamp,
                         Objects.requireNonNull(getTestData(data, "password")));
         new HomePage(getDriver())
-                .load();
-
-        new Header(getDriver())
-                .clickOnRegisterButton();
-
-        new SignupPage(getDriver())
+                .load()
+                .navigateToHeader()
+                .clickOnRegisterButton()
                 .signupUser(getTestData(data, "username") + timeStamp,getTestData(data, "password"))
                 .validateOnRegisterSuccessMessage(getTestData(data, "messages.already_exist_user"));
     }
