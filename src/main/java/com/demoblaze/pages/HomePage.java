@@ -1,7 +1,6 @@
 package com.demoblaze.pages;
 
 import com.demoblaze.utils.ConfigUtils;
-import com.demoblaze.utils.WaitUtils;
 import com.demoblaze.utils.actions.ElementActions;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
