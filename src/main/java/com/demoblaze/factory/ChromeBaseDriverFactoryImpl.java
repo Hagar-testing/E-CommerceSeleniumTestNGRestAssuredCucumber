@@ -16,11 +16,11 @@ public class ChromeBaseDriverFactoryImpl implements BaseDriverFactory {
     public WebDriver getDriver() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--remote-allow-origins=*");
+//        options.addArguments("--headless=new");
+//        options.addArguments("--no-sandbox");
+//        options.addArguments("--disable-dev-shm-usage");
+//        options.addArguments("--disable-gpu");
+//        options.addArguments("--remote-allow-origins=*");
         return new ChromeDriver(options);
 
 //        ChromeOptions chromeOptions = new ChromeOptions();
