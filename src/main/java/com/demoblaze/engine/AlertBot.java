@@ -1,11 +1,11 @@
-package com.demoblaze.utils.actions;
+package com.demoblaze.engine;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 
 import static com.demoblaze.utils.WaitUtils.waitForAlertToPresent;
 
-public class AlertActions {
+public class AlertBot {
 
     public static String getAlertMessage(WebDriver driver){
         waitForAlertToPresent(driver);

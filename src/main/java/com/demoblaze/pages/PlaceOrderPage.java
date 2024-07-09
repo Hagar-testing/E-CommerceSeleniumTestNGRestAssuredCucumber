@@ -1,6 +1,6 @@
 package com.demoblaze.pages;
 
-import com.demoblaze.utils.actions.ElementActions;
+import com.demoblaze.engine.ActionsBot;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +9,7 @@ import static com.demoblaze.utils.StringUtils.getNumberFromText;
 import static org.testng.Assert.assertEquals;
 
 public class PlaceOrderPage {
-    private final ElementActions elementActions;
+    private final ActionsBot actionsBot;
     private final By name_input = By.id("name");
     private final By country_input = By.id("country");
     private final By city_input = By.id("city");
@@ -22,7 +22,7 @@ public class PlaceOrderPage {
 
 
     public PlaceOrderPage(WebDriver driver){
-        this.elementActions = new ElementActions(driver);
+        this.actionsBot = new ActionsBot(driver);
     }
 
     @Step("Fill user order information and purchase")
@@ -32,7 +32,7 @@ public class PlaceOrderPage {
                                                           String month,
                                                           String card,
                                                           String year){
-        elementActions
+        actionsBot
                 .type(name_input,name)
                 .type(country_input,country)
                 .type(city_input,city)
@@ -48,13 +48,13 @@ public class PlaceOrderPage {
 
     @Step("Validate on total price in place order page")
     public PlaceOrderPage validateOnTotalPriceInPlaceOrder(String totalPrice){
-        String currentTotalPrice = getNumberFromText(elementActions.getElementText(totalPrice_label));
+        String currentTotalPrice = getNumberFromText(actionsBot.getElementText(totalPrice_label));
         assertEquals(currentTotalPrice,totalPrice);
         return this;
     }
     @Step("Validate is {message} shown successfully!")
     public PlaceOrderPage validateOnSuccessMessageOfPurchaseOrder(String message){
-        String currentMessage = elementActions.getElementText(successMessage_h3);
+        String currentMessage = actionsBot.getElementText(successMessage_h3);
         assertEquals(currentMessage,message);
         return this;
     }

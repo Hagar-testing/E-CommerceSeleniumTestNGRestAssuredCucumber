@@ -1,7 +1,7 @@
 package com.demoblaze.pages;
 
 import com.demoblaze.utils.ConfigUtils;
-import com.demoblaze.utils.actions.ElementActions;
+import com.demoblaze.engine.ActionsBot;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage {
     private final WebDriver driver;
-    private final ElementActions elementActions;
+    private final ActionsBot actionsBot;
     private By getSubCategoryLocator(String categoryName) {
         return By.linkText(categoryName);
     }
@@ -19,7 +19,7 @@ public class HomePage {
     }
     public HomePage(WebDriver driver){
         this.driver = driver;
-        this.elementActions = new ElementActions(driver);
+        this.actionsBot = new ActionsBot(driver);
     }
 
     @Step("Open Home Page")
@@ -29,12 +29,12 @@ public class HomePage {
 
     @Step("Select category: {categoryName}")
     public HomePage selectCategory(String categoryName){
-        elementActions.click(getSubCategoryLocator(categoryName));
+        actionsBot.click(getSubCategoryLocator(categoryName));
         return this;
     }
     @Step("Select product with index: {productIndex}")
     public HomePage selectProduct(Integer productIndex, String title)  {
-        elementActions
+        actionsBot
                 .waitForTextToBePresentInElement(getProductTitle(productIndex),title)
                 .click(getProductTitle(productIndex));
         return this;

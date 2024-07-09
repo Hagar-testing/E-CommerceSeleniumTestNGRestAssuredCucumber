@@ -1,27 +1,27 @@
 package com.demoblaze.pages;
 
-import com.demoblaze.utils.actions.BrowserActions;
-import com.demoblaze.utils.actions.ElementActions;
+import com.demoblaze.engine.BrowserBot;
+import com.demoblaze.engine.ActionsBot;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import static com.demoblaze.utils.actions.AlertActions.dismissAlertDialog;
-import static com.demoblaze.utils.actions.AlertActions.getAlertMessage;
+import static com.demoblaze.engine.AlertBot.dismissAlertDialog;
+import static com.demoblaze.engine.AlertBot.getAlertMessage;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class ProductDetailsPage {
     private final WebDriver driver;
-    private final ElementActions elementActions;
+    private final ActionsBot actionsBot;
     private final By addToCart_a = By.cssSelector("a[onclick*='addToCart']");
 
     public ProductDetailsPage(WebDriver driver){
         this.driver = driver;
-        this.elementActions = new ElementActions(driver);
+        this.actionsBot = new ActionsBot(driver);
     }
 
     @Step("Click on add to cart button")
     public ProductDetailsPage clickOnAddToCartButton()  {
-        elementActions.click(addToCart_a);
+        actionsBot.click(addToCart_a);
         return this;
     }
 
@@ -32,7 +32,7 @@ public class ProductDetailsPage {
     }
     @Step("Navigate back")
     public ProductDetailsPage navigateBack(){
-        BrowserActions.navigateBack(driver);
+        BrowserBot.navigateBack(driver);
         return this;
     }
 

@@ -1,8 +1,8 @@
-package com.demoblaze.utils.actions;
+package com.demoblaze.engine;
 
 import org.openqa.selenium.WebDriver;
 
-public class BrowserActions {
+public class BrowserBot {
 
 
     public static void navigateBack(WebDriver driver){
